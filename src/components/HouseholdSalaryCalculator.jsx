@@ -1,4 +1,5 @@
 import FamilyMemberTabs from "./FamilyMemberTabs/FamilyMemberTabs";
+import AddFamilyMember from "./AddFamilyMember/AddFamilyMember";
 import HouseholdSummary from "./HouseholdSummary/HouseholdSummary";
 import SalaryCalculator from "./SalaryCalculator/SalaryCalculator";
 import { useState } from "react";
@@ -25,10 +26,13 @@ const HouseholdSalaryCalculator = () => {
     },
   ]);
 
+  console.log(familyMembers);
+
   return (
     <>
-      <header>
+      <header className="flex gap-2">
         <FamilyMemberTabs members={familyMembers} setMember={setFamilyMember} />
+        <AddFamilyMember onAddMember={setFamilyMember} />
       </header>
       <main>
         <SalaryCalculator />
