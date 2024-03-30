@@ -1,8 +1,19 @@
-import { Flex, Box, Badge, Text } from "@radix-ui/themes";
+import {
+  Flex,
+  Box,
+  Badge,
+  Text,
+  Callout,
+  Button,
+  Dialog,
+} from "@radix-ui/themes";
 
 import LabeledSwitch from "./LabeledSwitch";
 import Counter from "./Counter";
 import Modal from "../../Modal/Modal";
+import LabeledInput from "./LabeledInput";
+
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 const Discounts = ({ discounts, setDiscounts }) => {
   function handleDiscountChange(type, isChecked) {
@@ -11,6 +22,8 @@ const Discounts = ({ discounts, setDiscounts }) => {
       [type]: { discount: prevDiscounts[type].discount, isActive: isChecked },
     }));
   }
+
+  function handleDateChange() {}
 
   console.log(discounts);
 
@@ -46,9 +59,32 @@ const Discounts = ({ discounts, setDiscounts }) => {
                 </Badge>
               }
               title="Dátum módosítása"
-              description="Dátum módosítása"
+              description="A kedvezmény először a házasságkötést követő hónapra vehető igénybe és a házassági életközösség alatt legfeljebb 24 hónapon keresztül jár."
             >
-              <Text size="2">Dátum módosítása</Text>
+              <Box className="space-y-2">
+                <LabeledInput
+                  label="Adja meg a házasságkötés dátumát"
+                  placeholder="YYYY/MM/DD"
+                />
+                <Callout.Root size="1" variant="soft">
+                  <Callout.Icon>
+                    <InfoCircledIcon />
+                  </Callout.Icon>
+                  <Callout.Text>Például: 2003/09/17</Callout.Text>
+                </Callout.Root>
+                <Flex mt="2" gap="2" justify="end">
+                  <Dialog.Close>
+                    <Button variant="soft" color="gray">
+                      Cancel
+                    </Button>
+                  </Dialog.Close>
+                  <Dialog.Close>
+                    <Button variant="solid" onClick={handleDateChange}>
+                      Mentés
+                    </Button>
+                  </Dialog.Close>
+                </Flex>
+              </Box>
             </Modal>
             <Badge color="crimson">Nem jogosult</Badge>
             <Badge color="green">Jogosult</Badge>
