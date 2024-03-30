@@ -5,9 +5,7 @@ import {
   Slider,
   Button,
   Heading,
-  Badge,
   IconButton,
-  Box,
   Strong,
 } from "@radix-ui/themes";
 
@@ -15,14 +13,20 @@ import { TrashIcon } from "@radix-ui/react-icons";
 
 import LabeledInput from "./components/LabeledInput";
 import PercentageGroup from "./components/PercentageGroup";
-import LabeledSwitch from "./components/LabeledSwitch";
-import Counter from "./components/Counter";
+import Discounts from "./components/Discounts";
 
 import { useState } from "react";
 
 const SalaryCalculator = () => {
   const [name, setName] = useState("");
   const [salary, setSalary] = useState("");
+
+  const [discounts, setDiscounts] = useState({
+    under25: { discount: 0, isActive: false },
+    taxDiscount: { discount: 0, isActive: false },
+    familyDiscount: { discount: 0, isActive: false },
+    freshMerried: { discount: 0, isActive: false },
+  });
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -93,51 +97,7 @@ const SalaryCalculator = () => {
         onClick={handleSalaryPercentageChange}
       />
       <Heading size="3">Kedvezmények</Heading>
-      <Flex direction="column" gap="2">
-        <LabeledSwitch
-          label="25 év alattiak SZJA mentessége"
-          labelSize="2"
-          size="1"
-          defaultChecked
-          radius="small"
-        />
-        <Flex gap="2" direction="row" wrap="wrap">
-          <LabeledSwitch
-            label="Friss házasok kedvezménye"
-            labelSize="2"
-            size="1"
-            defaultChecked
-            radius="small"
-          />
-          <Badge color="bronze">Dátum módosítása</Badge>
-          <Badge color="crimson">Nem jogosult</Badge>
-          <Badge color="green">Jogosult</Badge>
-        </Flex>
-        <LabeledSwitch
-          label="Személyi adókedvezmény"
-          labelSize="2"
-          size="1"
-          defaultChecked
-          radius="small"
-        />
-        <Box className="space-y-2">
-          <LabeledSwitch
-            label="Családi kedvezmény"
-            labelSize="2"
-            size="1"
-            defaultChecked
-            radius="small"
-          />
-          <Box>
-            <Flex gap="2" direction="column">
-              <Text size="2">Eltartottak száma</Text>
-              <Counter value={0} />
-              <Text size="2">Kedvezményezettek száma</Text>
-              <Counter value={0} />
-            </Flex>
-          </Box>
-        </Box>
-      </Flex>
+      <Discounts discounts={discounts} setDiscounts={setDiscounts} />
       <Text size="3">
         <Strong>Számított nettó bér</Strong>
       </Text>
