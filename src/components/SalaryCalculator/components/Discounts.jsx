@@ -10,8 +10,9 @@ import {
 
 import LabeledSwitch from "./LabeledSwitch";
 import Counter from "./Counter";
-import Modal from "../../Modal/Modal";
 import LabeledInput from "./LabeledInput";
+
+import { useRef, useState } from "react";
 
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 
@@ -23,7 +24,23 @@ const Discounts = ({ discounts, setDiscounts }) => {
     }));
   }
 
-  function handleDateChange() {}
+  const dateRef = useRef(null);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [date, setDate] = useState(null);
+  const [isInvalidDate, setIsInvalidDate] = useState(false);
+
+  function handleDateChange() {
+    const date = dateRef.current.value;
+    if (!date.match(/\d{4}\/\d{2}\/\d{2}/)) {
+      setIsInvalidDate(true);
+      return;
+    }
+
+    setIsInvalidDate(false);
+    setDate(date);
+    setIsOpen(false);
+  }
 
   console.log(discounts);
 
@@ -52,40 +69,55 @@ const Discounts = ({ discounts, setDiscounts }) => {
         />
         {discounts.freshMerried.isActive && (
           <>
-            <Modal
-              TriggerElement={
-                <Badge color="bronze" className="cursor-pointer">
+            <Dialog.Root open={isOpen}>
+              <Dialog.Trigger>
+                <Badge
+                  color="bronze"
+                  className="cursor-pointer"
+                  onClick={() => setIsOpen(true)}
+                >
                   Dátum módosítása
                 </Badge>
-              }
-              title="Dátum módosítása"
-              description="A kedvezmény először a házasságkötést követő hónapra vehető igénybe és a házassági életközösség alatt legfeljebb 24 hónapon keresztül jár."
-            >
-              <Box className="space-y-2">
-                <LabeledInput
-                  label="Adja meg a házasságkötés dátumát"
-                  placeholder="YYYY/MM/DD"
-                />
-                <Callout.Root size="1" variant="soft">
-                  <Callout.Icon>
-                    <InfoCircledIcon />
-                  </Callout.Icon>
-                  <Callout.Text>Például: 2003/09/17</Callout.Text>
-                </Callout.Root>
-                <Flex mt="2" gap="2" justify="end">
-                  <Dialog.Close>
-                    <Button variant="soft" color="gray">
-                      Cancel
-                    </Button>
-                  </Dialog.Close>
-                  <Dialog.Close>
-                    <Button variant="solid" onClick={handleDateChange}>
-                      Mentés
-                    </Button>
-                  </Dialog.Close>
-                </Flex>
-              </Box>
-            </Modal>
+              </Dialog.Trigger>
+              <Dialog.Content>
+                <Dialog.Title>Dátum módosítása</Dialog.Title>
+                <Dialog.Description size="2" mb="4">
+                  A kedvezmény először a házasságkötést követő hónapra vehető
+                  igénybe és a házassági életközösség alatt legfeljebb 24
+                  hónapon keresztül jár.
+                </Dialog.Description>
+                <Box className="space-y-2">
+                  <LabeledInput
+                    label="Adja meg a házasságkötés dátumát"
+                    placeholder="YYYY/MM/DD"
+                    ref={dateRef}
+                  />
+                  {isInvalidDate && <Text size="1">Hibás dátum formátum</Text>}
+                  <Callout.Root size="1" variant="soft">
+                    <Callout.Icon>
+                      <InfoCircledIcon />
+                    </Callout.Icon>
+                    <Callout.Text>Például: 2003/09/17</Callout.Text>
+                  </Callout.Root>
+                  <Flex mt="2" gap="2" justify="end">
+                    <Dialog.Close>
+                      <Button
+                        variant="soft"
+                        color="gray"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Cancel
+                      </Button>
+                    </Dialog.Close>
+                    <Dialog.Close>
+                      <Button variant="solid" onClick={handleDateChange}>
+                        Mentés
+                      </Button>
+                    </Dialog.Close>
+                  </Flex>
+                </Box>
+              </Dialog.Content>
+            </Dialog.Root>
             <Badge color="crimson">Nem jogosult</Badge>
             <Badge color="green">Jogosult</Badge>
           </>
@@ -112,14 +144,16 @@ const Discounts = ({ discounts, setDiscounts }) => {
             handleDiscountChange("familyDiscount", isChecked)
           }
         />
-        <Box>
-          <Flex gap="2" direction="column">
-            <Text size="2">Eltartottak száma</Text>
-            <Counter value={0} />
-            <Text size="2">Kedvezményezettek száma</Text>
-            <Counter value={0} />
-          </Flex>
-        </Box>
+        {discounts.familyDiscount.isActive && (
+          <Box>
+            <Flex gap="2" direction="column">
+              <Text size="2">Eltartottak száma</Text>
+              <Counter value={0} />
+              <Text size="2">Kedvezményezettek száma</Text>
+              <Counter value={0} />
+            </Flex>
+          </Box>
+        )}
       </Box>
     </Flex>
   );

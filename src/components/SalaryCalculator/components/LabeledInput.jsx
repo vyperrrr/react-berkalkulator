@@ -1,17 +1,14 @@
 import { TextField, Text } from "@radix-ui/themes";
+import { forwardRef } from "react";
 
-const LabeledInput = ({
-  label,
-  size,
-  warningLabel,
-  isWarningEnabled,
-  children,
-  ...props
-}) => {
+const LabeledInput = forwardRef(function LabeledInput(
+  { label, size, warningLabel, isWarningEnabled, children, ...props },
+  ref,
+) {
   return (
     <>
       {label && <Text size={size}>{label}</Text>}
-      <TextField.Root size={size} {...props}>
+      <TextField.Root size={size} {...props} ref={ref}>
         {children}
       </TextField.Root>
       {isWarningEnabled && (
@@ -19,6 +16,6 @@ const LabeledInput = ({
       )}
     </>
   );
-};
+});
 
 export default LabeledInput;
