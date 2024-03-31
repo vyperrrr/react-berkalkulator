@@ -13,7 +13,7 @@ import { TrashIcon } from "@radix-ui/react-icons";
 
 import LabeledInput from "./components/LabeledInput";
 import PercentageGroup from "./components/PercentageGroup";
-import Discounts from "./components/Discounts";
+import Discounts from "./components/Discounts/Discounts";
 
 import { useState } from "react";
 

@@ -1,8 +1,8 @@
-import { Flex, Box, Text } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 
-import LabeledSwitch from "./LabeledSwitch";
-import Counter from "./Counter";
-import MarriageDiscount from "./MarriageDiscount";
+import LabeledSwitch from "../LabeledSwitch";
+import MarriageDiscount from "./components/MarriageDiscount/MarriageDiscount";
+import FamilyDiscount from "./components/FamilyDiscount/FamilyDiscount";
 
 const Discounts = ({ discounts, setDiscounts }) => {
   function handleDiscountChange(type, isChecked) {
@@ -41,28 +41,10 @@ const Discounts = ({ discounts, setDiscounts }) => {
         discounts={discounts}
         handleDiscountChange={handleDiscountChange}
       />
-      <Box className="space-y-2">
-        <LabeledSwitch
-          label="Családi kedvezmény"
-          labelSize="2"
-          size="1"
-          radius="small"
-          checked={discounts.familyDiscount.isActive}
-          onCheckedChange={(isChecked) =>
-            handleDiscountChange("familyDiscount", isChecked)
-          }
-        />
-        {discounts.familyDiscount.isActive && (
-          <Box>
-            <Flex gap="2" direction="column">
-              <Text size="2">Eltartottak száma</Text>
-              <Counter value={0} />
-              <Text size="2">Kedvezményezettek száma</Text>
-              <Counter value={0} />
-            </Flex>
-          </Box>
-        )}
-      </Box>
+      <FamilyDiscount
+        discounts={discounts}
+        handleDiscountChange={handleDiscountChange}
+      />
     </Flex>
   );
 };

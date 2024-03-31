@@ -4,10 +4,10 @@ import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 import dayjs from "dayjs";
 
-import LabeledInput from "./LabeledInput";
-import LabeledSwitch from "./LabeledSwitch";
-import Modal from "./Modal";
-import Eligiblity from "./Eligibility";
+import LabeledInput from "../../../LabeledInput";
+import LabeledSwitch from "../../../LabeledSwitch";
+import Modal from "../../../../../Modal/Modal";
+import Eligiblity from "./components/Eligibility";
 
 let isEligibleForMarriageDiscount = false;
 
