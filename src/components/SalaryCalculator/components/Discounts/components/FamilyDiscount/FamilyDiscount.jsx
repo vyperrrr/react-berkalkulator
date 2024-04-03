@@ -25,15 +25,28 @@ const FamilyDiscount = ({ discounts, handleDiscountChange }) => {
           <Flex gap="2" direction="column">
             <Text size="2">Eltartottak száma</Text>
             <Counter
-              initialCount={supportedChildren}
+              count={supportedChildren}
               setCount={setSupportedChildren}
+              onCountChange={() =>
+                handleDiscountChange("familyDiscount", true, {
+                  supportedChildren,
+                  beneficiaryChildren,
+                })
+              }
               min={0}
             />
             <Text size="2">Kedvezményezettek száma</Text>
             <Counter
-              initialCount={beneficiaryChildren}
+              count={beneficiaryChildren}
               setCount={setBeneficiaryChildren}
+              onCountChange={() =>
+                handleDiscountChange("familyDiscount", true, {
+                  supportedChildren,
+                  beneficiaryChildren,
+                })
+              }
               min={0}
+              max={supportedChildren > 3 ? 3 : supportedChildren}
             />
           </Flex>
         </Box>

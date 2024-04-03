@@ -21,10 +21,12 @@ const MarriageDiscount = ({ discounts, handleDiscountChange }) => {
   function handleDateChange() {
     const date = dateRef.current.value;
     if (!validateDate(date)) {
+      handleDiscountChange("freshMerried", true, { isEligible: false });
       setIsInvalidDate(true);
       return;
     }
 
+    handleDiscountChange("freshMerried", true, { isEligible: true });
     setIsOpen(false);
     setIsInvalidDate(false);
     setDate(date);

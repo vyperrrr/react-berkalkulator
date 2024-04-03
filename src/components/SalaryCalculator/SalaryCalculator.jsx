@@ -15,29 +15,26 @@ import LabeledInput from "./components/LabeledInput";
 import PercentageGroup from "./components/PercentageGroup";
 import Discounts from "./components/Discounts/Discounts";
 
-import { useState } from "react";
+import MemberContext from "../../store/MemberContext";
+
+import { useContext } from "react";
 
 const SalaryCalculator = () => {
-  const [name, setName] = useState("");
-  const [salary, setSalary] = useState("");
+  const { selectedMember, setName, setSalary, removeMember } =
+    useContext(MemberContext);
 
-  const [discounts, setDiscounts] = useState({
-    under25: { discount: 0, isActive: false },
-    taxDiscount: { discount: 0, isActive: false },
-    familyDiscount: { discount: 0, isActive: false },
-    freshMerried: { discount: 0, isActive: false },
-  });
+  const { id, name, salary, discounts } = selectedMember;
 
   function handleNameChange(event) {
-    setName(event.target.value);
+    setName(selectedMember.id, event.target.value);
   }
 
   function handleSalaryChange(event) {
     const value = event.target.value;
     if (value === "") {
-      setSalary(value);
+      setSalary(id, value);
     } else if (!isNaN(value) && !value.includes("e")) {
-      setSalary(+value);
+      setSalary(id, +value);
     }
   }
 
@@ -45,19 +42,21 @@ const SalaryCalculator = () => {
 
   function handleSalaryPercentageChange(event) {
     if (salary === "") return;
-    setSalary((prevSalary) => {
-      const percentage = event.target.value / 100;
-      return prevSalary + prevSalary * percentage;
-    });
+    const percentage = event.target.value / 100;
+    const newSalary = salary + salary * percentage;
+    setSalary(id, newSalary);
   }
 
   function handleSalarySliderChange(newValue) {
-    setSalary(+newValue);
+    setSalary(id, +newValue);
   }
 
   return (
     <Flex direction="column" gap="2" className="relative">
-      <IconButton className="absolute right-0">
+      <IconButton
+        className="absolute right-0"
+        onClick={() => removeMember(selectedMember.id)}
+      >
         <TrashIcon width="18" height="18" />
       </IconButton>
       <Heading size="4" className="uppercase">
@@ -97,7 +96,7 @@ const SalaryCalculator = () => {
         onClick={handleSalaryPercentageChange}
       />
       <Heading size="3">Kedvezmények</Heading>
-      <Discounts discounts={discounts} setDiscounts={setDiscounts} />
+      <Discounts />
       <Text size="3">
         <Strong>Számított nettó bér</Strong>
       </Text>

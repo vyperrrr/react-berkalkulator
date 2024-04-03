@@ -4,12 +4,20 @@ import LabeledSwitch from "../LabeledSwitch";
 import MarriageDiscount from "./components/MarriageDiscount/MarriageDiscount";
 import FamilyDiscount from "./components/FamilyDiscount/FamilyDiscount";
 
-const Discounts = ({ discounts, setDiscounts }) => {
+import MemberContext from "../../../../store/MemberContext";
+import { useContext } from "react";
+
+const Discounts = () => {
+  const { selectedMember, setDiscounts } = useContext(MemberContext);
+
+  const { id, discounts } = selectedMember;
+
   function handleDiscountChange(type, isChecked) {
-    setDiscounts((prevDiscounts) => ({
-      ...prevDiscounts,
-      [type]: { discount: prevDiscounts[type].discount, isActive: isChecked },
-    }));
+    const updatedDiscounts = {
+      ...discounts,
+      [type]: { isActive: isChecked },
+    };
+    setDiscounts(id, updatedDiscounts);
   }
 
   console.log(discounts);
@@ -26,7 +34,6 @@ const Discounts = ({ discounts, setDiscounts }) => {
           handleDiscountChange("under25", isChecked)
         }
       />
-
       <LabeledSwitch
         label="Személyi adókedvezmény"
         labelSize="2"

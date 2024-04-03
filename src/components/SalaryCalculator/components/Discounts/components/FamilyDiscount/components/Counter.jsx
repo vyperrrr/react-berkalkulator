@@ -6,18 +6,18 @@ import { useEffect } from "react";
  * Counter component.
  *
  * @param {Object} props Component props.
- * @param {number} props.initialCount The initial count.
+ * @param {number} props.count The initial count.
  * @param {Function} props.setCount Function to set the count. Returns the new count. It should be a state setter function.
+ * @param {Function} props.onCountChange Triggers passed function on count change.
  * @param {number} props.min The minimum count.
  * @param {number} props.max The maximum count.
  */
-const Counter = ({ initialCount, setCount, min, max }) => {
+const Counter = ({ count, setCount, onCountChange, min, max }) => {
   useEffect(() => {
-    if (initialCount < min || initialCount > max)
-      throw new Error(
-        "CounterError : initialCount must be in [min, max] range.",
-      );
-  }, [initialCount, min, max]);
+    if (count < min) setCount(min);
+    if (count > max) setCount(max);
+    if (onCountChange) onCountChange();
+  }, [count, min, max]);
 
   function decrement() {
     setCount((prevValue) => {
@@ -42,7 +42,7 @@ const Counter = ({ initialCount, setCount, min, max }) => {
       <IconButton onClick={decrement}>
         <MinusIcon width="18" height="18" />
       </IconButton>
-      <Badge radius="small">{initialCount}</Badge>
+      <Badge radius="small">{count}</Badge>
       <IconButton onClick={increment}>
         <PlusIcon width="18" height="18" />
       </IconButton>
