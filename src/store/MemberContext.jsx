@@ -10,7 +10,8 @@ const MemberContext = createContext({
   setSalary: () => {},
   setDiscounts: () => {},
   setIsSelected: () => {},
-  selectedMember: {},
+  calculateNetSalary: () => {},
+  calculateOverallNetSalary: () => {},
 });
 
 export default MemberContext;
@@ -70,13 +71,72 @@ export function MemberContextProvider({ children }) {
     );
   }
 
+  function calculateNetSalary(member) {
+    let salary = member.salary;
+    let discounts = member.discounts;
+
+    const RATE_SZJA = 15;
+    const RATE_TB = 18.5;
+    const PERSONAL_TAX_ALLOWANCE = 77_300;
+
+    let totalTax = (salary * RATE_TB) / 100 + (salary * RATE_SZJA) / 100;
+
+    let netSalary = 0;
+
+    Object.entries(discounts).forEach(([key, value]) => {
+      if (value.isActive) {
+        switch (key) {
+          case "under25":
+            totalTax -= salary * (RATE_SZJA / 100);
+            break;
+          case "taxDiscount":
+            totalTax -= PERSONAL_TAX_ALLOWANCE;
+            break;
+          case "familyDiscount":
+            if (value.supportedChildren === 0) break;
+            if (value.bebeficiaryChildren < 3)
+              switch (value.beneficiaryChildren) {
+                case 1:
+                  totalTax -= 10_000 * value.supportedChildren;
+                  break;
+                case 2:
+                  totalTax -= 20_000 * value.supportedChildren;
+                  break;
+                default:
+                  break;
+              }
+            else {
+              totalTax -= 33_000 * value.supportedChildren;
+            }
+            break;
+          case "freshMerried":
+            if (value.isEligible) netSalary += 5000;
+            break;
+          default:
+            break;
+        }
+      }
+    });
+
+    if (totalTax > 0) {
+      netSalary += salary - totalTax;
+    } else netSalary = salary;
+
+    return netSalary;
+  }
+
+  function calculateOverallNetSalary() {
+    let netSalary = 0;
+    members.forEach((member) => (netSalary += calculateNetSalary(member)));
+  }
+
   function setIsSelected(id, isSelected) {
     setMembers((prevMembers) =>
       prevMembers.map((member) => {
         if (member.id === id) {
           return { ...member, isSelected };
         }
-        return member;
+        return { ...member, isSelected: !isSelected };
       }),
     );
   }
@@ -94,13 +154,15 @@ export function MemberContextProvider({ children }) {
 
   const ctx = {
     members,
+    selectedMember: getSelectedMember(),
     addMember,
     removeMember,
     setName,
     setSalary,
     setDiscounts,
     setIsSelected,
-    selectedMember: getSelectedMember(),
+    calculateNetSalary,
+    calculateOverallNetSalary,
   };
 
   return (

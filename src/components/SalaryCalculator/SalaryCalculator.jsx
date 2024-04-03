@@ -20,10 +20,15 @@ import MemberContext from "../../store/MemberContext";
 import { useContext } from "react";
 
 const SalaryCalculator = () => {
-  const { selectedMember, setName, setSalary, removeMember } =
-    useContext(MemberContext);
+  const {
+    selectedMember,
+    setName,
+    setSalary,
+    removeMember,
+    calculateNetSalary,
+  } = useContext(MemberContext);
 
-  const { id, name, salary, discounts } = selectedMember;
+  const { id, name, salary } = selectedMember;
 
   function handleNameChange(event) {
     setName(selectedMember.id, event.target.value);
@@ -100,7 +105,7 @@ const SalaryCalculator = () => {
       <Text size="3">
         <Strong>Számított nettó bér</Strong>
       </Text>
-      <Button variant="outline">130.000 Ft</Button>
+      <Button variant="outline">{calculateNetSalary(selectedMember)}</Button>
     </Flex>
   );
 };
