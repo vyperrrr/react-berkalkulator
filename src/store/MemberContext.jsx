@@ -49,40 +49,47 @@ export function MemberContextProvider({ children }) {
   }
 
   function setName(id, name) {
-    setMembers((prevMembers) => {
-      const members = [...prevMembers];
-      const member = members.find((member) => member.id === id);
-      member.name = name;
-      return members;
-    });
+    setMembers((prevMembers) =>
+      prevMembers.map((member) => {
+        if (member.id === id) {
+          return { ...member, name };
+        }
+        return member;
+      }),
+    );
   }
 
   function setSalary(id, salary) {
-    setMembers((prevMembers) => {
-      const members = [...prevMembers];
-      const member = members.find((member) => member.id === id);
-      member.salary = salary;
-      return members;
-    });
+    setMembers((prevMembers) =>
+      prevMembers.map((member) => {
+        if (member.id === id) {
+          return { ...member, salary };
+        }
+        return member;
+      }),
+    );
   }
 
   function setIsSelected(id, isSelected) {
-    setMembers((prevMembers) => {
-      prevMembers.forEach((member) => (member.isSelected = false));
-      const members = [...prevMembers];
-      const selectedMember = members.find((member) => member.id === id);
-      selectedMember.isSelected = isSelected;
-      return members;
-    });
+    setMembers((prevMembers) =>
+      prevMembers.map((member) => {
+        if (member.id === id) {
+          return { ...member, isSelected };
+        }
+        return member;
+      }),
+    );
   }
 
   function setDiscounts(id, discounts) {
-    setMembers((prevMembers) => {
-      const members = [...prevMembers];
-      const member = members.find((member) => member.id === id);
-      member.discounts = discounts;
-      return members;
-    });
+    setMembers((prevMembers) =>
+      prevMembers.map((member) => {
+        if (member.id === id) {
+          return { ...member, discounts };
+        }
+        return member;
+      }),
+    );
   }
 
   const ctx = {
