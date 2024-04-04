@@ -93,20 +93,20 @@ export function MemberContextProvider({ children }) {
             totalTax -= PERSONAL_TAX_ALLOWANCE;
             break;
           case "familyDiscount":
-            if (value.supportedChildren === 0) break;
-            if (value.bebeficiaryChildren < 3)
+            if (value.beneficiaryChildren === 0) break;
+            if (value.beneficiaryChildren < 3)
               switch (value.beneficiaryChildren) {
                 case 1:
-                  totalTax -= 10_000 * value.supportedChildren;
+                  netSalary += 10_000 * value.supportedChildren;
                   break;
                 case 2:
-                  totalTax -= 20_000 * value.supportedChildren;
+                  netSalary += 20_000 * value.supportedChildren;
                   break;
                 default:
                   break;
               }
             else {
-              totalTax -= 33_000 * value.supportedChildren;
+              netSalary += 33_000 * value.supportedChildren;
             }
             break;
           case "freshMerried":
@@ -128,6 +128,7 @@ export function MemberContextProvider({ children }) {
   function calculateOverallNetSalary() {
     let netSalary = 0;
     members.forEach((member) => (netSalary += calculateNetSalary(member)));
+    return netSalary;
   }
 
   function setIsSelected(id, isSelected) {

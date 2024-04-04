@@ -1,37 +1,34 @@
 import { Box, Heading, Table } from "@radix-ui/themes";
 
+import MemberContext from "../../store/MemberContext";
+import { useContext } from "react";
+
 const HouseholdSummary = () => {
+  const { members, calculateNetSalary, calculateOverallNetSalary } =
+    useContext(MemberContext);
+
   return (
-    <Box>
+    <Box className="space-y-2">
       <Heading size="3" className="text-center">
         Háztartás összesített jövedelme
       </Heading>
-      <Table.Root>
-        <Table.Header>
+      <Table.Root variant="surface">
+        <Table.Header className="[&>*]:font-semibold">
           <Table.Row>
-            <Table.ColumnHeaderCell>Full name</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>Email</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>Group</Table.ColumnHeaderCell>
+            <Table.Cell>Családtag</Table.Cell>
+            <Table.Cell>Nettó bér</Table.Cell>
           </Table.Row>
         </Table.Header>
-
         <Table.Body>
+          {members.map((member) => (
+            <Table.Row>
+              <Table.Cell>{member.name}</Table.Cell>
+              <Table.Cell>{calculateNetSalary(member)} Ft</Table.Cell>
+            </Table.Row>
+          ))}
           <Table.Row>
-            <Table.RowHeaderCell>Danilo Sousa</Table.RowHeaderCell>
-            <Table.Cell>danilo@example.com</Table.Cell>
-            <Table.Cell>Developer</Table.Cell>
-          </Table.Row>
-
-          <Table.Row>
-            <Table.RowHeaderCell>Zahra Ambessa</Table.RowHeaderCell>
-            <Table.Cell>zahra@example.com</Table.Cell>
-            <Table.Cell>Admin</Table.Cell>
-          </Table.Row>
-
-          <Table.Row>
-            <Table.RowHeaderCell>Jasper Eriksson</Table.RowHeaderCell>
-            <Table.Cell>jasper@example.com</Table.Cell>
-            <Table.Cell>Developer</Table.Cell>
+            <Table.RowHeaderCell>Összesen</Table.RowHeaderCell>
+            <Table.Cell>{calculateOverallNetSalary()} Ft</Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table.Root>

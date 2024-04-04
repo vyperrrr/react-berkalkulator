@@ -12,10 +12,10 @@ const Discounts = () => {
 
   const { id, discounts } = selectedMember;
 
-  function handleDiscountChange(type, isChecked) {
+  function handleDiscountChange(type, isChecked, properties = {}) {
     const updatedDiscounts = {
       ...discounts,
-      [type]: { isActive: isChecked },
+      [type]: { isActive: isChecked, ...properties },
     };
     setDiscounts(id, updatedDiscounts);
   }

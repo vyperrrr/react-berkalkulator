@@ -78,7 +78,9 @@ const MarriageDiscount = ({ discounts, handleDiscountChange }) => {
         radius="small"
         checked={discounts.freshMerried.isActive}
         onCheckedChange={(isChecked) =>
-          handleDiscountChange("freshMerried", isChecked)
+          handleDiscountChange("freshMerried", isChecked, {
+            isEligible: checkIfEligibleForMarriageDiscount(),
+          })
         }
       />
       {discounts.freshMerried.isActive && (

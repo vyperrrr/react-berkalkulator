@@ -86,11 +86,11 @@ const SalaryCalculator = () => {
         <TextField.Slot side="right">Ft</TextField.Slot>
       </LabeledInput>
       <Slider
-        defaultValue={[0]}
+        value={[salary]}
         onValueChange={handleSalarySliderChange}
         min={0}
-        step={1000}
-        max={500000}
+        step={100}
+        max={2000000}
         variant="soft"
         radius="small"
       />
