@@ -21,7 +21,7 @@ const Discounts = () => {
   }
 
   return (
-    <Flex direction="column" gap="2">
+    <Flex direction="column" gapY="2">
       <Heading size="3">Kedvezmények</Heading>
       <LabeledSwitch
         label="25 év alattiak SZJA mentessége"

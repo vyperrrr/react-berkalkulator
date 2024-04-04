@@ -6,7 +6,7 @@ const LabeledInput = forwardRef(function LabeledInput(
   ref,
 ) {
   return (
-    <span>
+    <span className="space-y-1">
       {label && <Text size={size}>{label}</Text>}
       <TextField.Root size={size} {...props} ref={ref}>
         {children}

@@ -15,6 +15,8 @@ import LabeledInput from "./components/LabeledInput";
 import PercentageGroup from "./components/PercentageGroup";
 import Discounts from "./components/Discounts/Discounts";
 
+import numberFormatter from "../../utils/numberFormatter";
+
 import MemberContext from "../../store/MemberContext";
 
 import { useContext } from "react";
@@ -37,7 +39,7 @@ const SalaryCalculator = () => {
   function handleSalaryChange(event) {
     const value = event.target.value;
     if (value === "") {
-      setSalary(id, value);
+      setSalary(id, 0);
     } else if (!isNaN(value) && !value.includes("e")) {
       setSalary(id, +value);
     }
@@ -80,7 +82,7 @@ const SalaryCalculator = () => {
         value={salary}
         onChange={handleSalaryChange}
         warningLabel={"Add meg a bruttó béredet!"}
-        isWarningEnabled={salary === ""}
+        isWarningEnabled={salary === 0}
       >
         <TextField.Slot side="right">Ft</TextField.Slot>
       </LabeledInput>
@@ -100,11 +102,13 @@ const SalaryCalculator = () => {
         onClick={handleSalaryPercentageChange}
       />
       <Discounts />
-      <Flex direction="column">
+      <Flex direction="column" gapY="2">
         <Text size="3">
           <Strong>Számított nettó bér</Strong>
         </Text>
-        <Button variant="outline">{calculateNetSalary(selectedMember)}</Button>
+        <Button variant="outline">
+          {numberFormatter(calculateNetSalary(selectedMember))}
+        </Button>
       </Flex>
     </Flex>
   );
