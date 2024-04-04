@@ -11,22 +11,20 @@ const HouseholdSalaryCalculator = () => {
   const { selectedMember } = useContext(MemberContext);
   return (
     <Container className="">
-      <Box m="4">
+      <Box m="4" className="space-y-2">
         <FamilyMemberTabs />
-        <Flex
-          direction="row"
-          gapX={{ xs: "0", sm: "6" }}
-          gapY={{ initial: "6", md: "0" }}
-          wrap="wrap"
-          className="justify-center"
-        >
-          {selectedMember !== undefined && (
-            <>
-              <SalaryCalculator />
-              <HouseholdSummary />
-            </>
-          )}
-        </Flex>
+        {selectedMember !== undefined && (
+          <Flex
+            direction="row"
+            gapX={{ initial: "0", sm: "6" }}
+            gapY={{ initial: "6", md: "0" }}
+            wrap={{ initial: "wrap", md: "nowrap" }}
+            className="justify-center"
+          >
+            <SalaryCalculator />
+            <HouseholdSummary />
+          </Flex>
+        )}
       </Box>
     </Container>
   );

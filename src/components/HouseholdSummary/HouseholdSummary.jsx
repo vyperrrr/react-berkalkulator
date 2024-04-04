@@ -8,7 +8,7 @@ const HouseholdSummary = () => {
     useContext(MemberContext);
 
   return (
-    <Box className="space-y-2">
+    <Box className="h-full w-full space-y-2">
       <Heading size="3" className="text-center">
         Háztartás összesített jövedelme
       </Heading>
@@ -21,8 +21,10 @@ const HouseholdSummary = () => {
         </Table.Header>
         <Table.Body>
           {members.map((member) => (
-            <Table.Row>
-              <Table.Cell>{member.name}</Table.Cell>
+            <Table.Row key={member.id}>
+              <Table.Cell>
+                {member.name === "" ? `Placeholder #${member.id}` : member.name}
+              </Table.Cell>
               <Table.Cell>{calculateNetSalary(member)} Ft</Table.Cell>
             </Table.Row>
           ))}

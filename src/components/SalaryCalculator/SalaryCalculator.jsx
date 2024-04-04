@@ -57,19 +57,18 @@ const SalaryCalculator = () => {
   }
 
   return (
-    <Flex direction="column" gap="2" className="relative">
-      <IconButton
-        className="absolute right-0"
-        onClick={() => removeMember(selectedMember.id)}
-      >
-        <TrashIcon width="18" height="18" />
-      </IconButton>
-      <Heading size="4" className="uppercase">
-        {name} bérének kiszámítása
-      </Heading>
+    <Flex direction="column" gap="2" className="h-full w-full" gapY="3">
+      <Flex justify="between" align="center">
+        <Heading size="4" className="uppercase">
+          {name} bérének kiszámítása
+        </Heading>
+        <IconButton onClick={() => removeMember(selectedMember.id)}>
+          <TrashIcon width="18" height="18" />
+        </IconButton>
+      </Flex>
       <LabeledInput
         label={"Családtag neve"}
-        size={"3"}
+        size={"2"}
         value={name}
         onChange={handleNameChange}
         warningLabel={"Add meg a családtag nevét!"}
@@ -77,7 +76,7 @@ const SalaryCalculator = () => {
       />
       <LabeledInput
         label={"Bruttó bér"}
-        size={"3"}
+        size={"2"}
         value={salary}
         onChange={handleSalaryChange}
         warningLabel={"Add meg a bruttó béredet!"}
@@ -100,12 +99,13 @@ const SalaryCalculator = () => {
         values={percentages}
         onClick={handleSalaryPercentageChange}
       />
-      <Heading size="3">Kedvezmények</Heading>
       <Discounts />
-      <Text size="3">
-        <Strong>Számított nettó bér</Strong>
-      </Text>
-      <Button variant="outline">{calculateNetSalary(selectedMember)}</Button>
+      <Flex direction="column">
+        <Text size="3">
+          <Strong>Számított nettó bér</Strong>
+        </Text>
+        <Button variant="outline">{calculateNetSalary(selectedMember)}</Button>
+      </Flex>
     </Flex>
   );
 };

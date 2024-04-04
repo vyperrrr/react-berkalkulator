@@ -1,4 +1,4 @@
-import { Flex } from "@radix-ui/themes";
+import { Flex, Heading } from "@radix-ui/themes";
 
 import LabeledSwitch from "../LabeledSwitch";
 import MarriageDiscount from "./components/MarriageDiscount/MarriageDiscount";
@@ -20,10 +20,9 @@ const Discounts = () => {
     setDiscounts(id, updatedDiscounts);
   }
 
-  console.log(discounts);
-
   return (
     <Flex direction="column" gap="2">
+      <Heading size="3">Kedvezmények</Heading>
       <LabeledSwitch
         label="25 év alattiak SZJA mentessége"
         labelSize="2"

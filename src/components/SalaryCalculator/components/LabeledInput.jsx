@@ -6,7 +6,7 @@ const LabeledInput = forwardRef(function LabeledInput(
   ref,
 ) {
   return (
-    <>
+    <span>
       {label && <Text size={size}>{label}</Text>}
       <TextField.Root size={size} {...props} ref={ref}>
         {children}
@@ -14,7 +14,7 @@ const LabeledInput = forwardRef(function LabeledInput(
       {isWarningEnabled && (
         <Text size={size > 2 ? size - 2 + "" : "1"}>{warningLabel}</Text>
       )}
-    </>
+    </span>
   );
 });
 
