@@ -1,5 +1,8 @@
 import { createContext } from "react";
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
+
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 const MemberContext = createContext({
   members: [],
@@ -50,14 +53,19 @@ function memberReducer(state, action) {
 }
 
 export function MemberContextProvider({ children }) {
-  const [members, dispatch] = useReducer(memberReducer, []);
+  const [storedMembers, setStoredMembers] = useLocalStorage("members", []);
+  const [members, dispatch] = useReducer(memberReducer, storedMembers);
   const [idCounter, setIdCounter] = useState(0);
+
+  useEffect(() => {
+    setStoredMembers(members);
+  }, [members]);
 
   const addMember = () => {
     dispatch({
       type: "ADD_MEMBER",
       payload: {
-        id: idCounter,
+        id: uuidv4(),
         name: "",
         salary: 0,
         discounts: {
