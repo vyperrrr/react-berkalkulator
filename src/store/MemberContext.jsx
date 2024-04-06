@@ -94,9 +94,9 @@ export function MemberContextProvider({ children }) {
     dispatch({ type: "SET_IS_SELECTED", payload: { id, isSelected } });
   };
 
-  function getSelectedMember() {
-    return members.find((member) => member.isSelected === true);
-  }
+  const getSelectedMember = () => {
+    return members.find((member) => member.isSelected);
+  };
 
   function calculateNetSalary(member) {
     let salary = member.salary;

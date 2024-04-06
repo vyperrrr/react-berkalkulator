@@ -4,10 +4,16 @@ import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 import dayjs from "dayjs";
 
-import LabeledInput from "../../../LabeledInput";
-import LabeledSwitch from "../../../LabeledSwitch";
-import Modal from "../../../../../Modal/Modal";
+import LabeledInput from "@/components/SalaryCalculator/components/LabeledInput";
+import LabeledSwitch from "@/components/SalaryCalculator/components/LabeledSwitch";
+import Modal from "@/components/Modal/Modal";
 import Eligiblity from "./components/Eligibility";
+
+import {
+  validateDate,
+  isDateWithinTwoYearsFromNow,
+  isDateNextMonthBeforeNow,
+} from "@/utils/dateUtils";
 
 let isEligibleForMarriageDiscount = false;
 
@@ -32,12 +38,13 @@ const MarriageDiscount = ({ discounts, handleDiscountChange }) => {
     setDate(date);
   }
 
-  function validateDate(date) {
+  function isEligibleForDiscount() {
     const marriageDate = dayjs(date);
-    if (!marriageDate.isValid()) return false;
-    if (marriageDate.isAfter(dayjs())) return false;
 
-    return true;
+    return (
+      isDateWithinTwoYearsFromNow(marriageDate) &&
+      isDateNextMonthBeforeNow(marriageDate)
+    );
   }
 
   function handleModalClose() {
@@ -45,29 +52,7 @@ const MarriageDiscount = ({ discounts, handleDiscountChange }) => {
     setIsInvalidDate(false);
   }
 
-  function isMarriageDateWithinTwoYears(marriageDate) {
-    const now = dayjs();
-    const diffYears = now.diff(marriageDate, "year");
-    return diffYears <= 2;
-  }
-
-  function isMarriageDateNextMonthBeforeNow(marriageDate) {
-    const now = dayjs();
-    const marriageDateNextMonth = marriageDate.add(1, "month").startOf("month");
-    return now.isAfter(marriageDateNextMonth);
-  }
-
-  function checkIfEligibleForMarriageDiscount() {
-    const marriageDate = dayjs(date);
-
-    return (
-      isMarriageDateWithinTwoYears(marriageDate) &&
-      isMarriageDateNextMonthBeforeNow(marriageDate)
-    );
-  }
-
-  if (date != null)
-    isEligibleForMarriageDiscount = checkIfEligibleForMarriageDiscount();
+  if (date != null) isEligibleForMarriageDiscount = isEligibleForDiscount();
 
   return (
     <Flex gap="2" direction="row" wrap="wrap">
@@ -79,7 +64,7 @@ const MarriageDiscount = ({ discounts, handleDiscountChange }) => {
         checked={discounts.freshMerried.isActive}
         onCheckedChange={(isChecked) =>
           handleDiscountChange("freshMerried", isChecked, {
-            isEligible: checkIfEligibleForMarriageDiscount(),
+            isEligible: isEligibleForMarriageDiscount,
           })
         }
       />

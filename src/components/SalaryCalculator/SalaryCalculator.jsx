@@ -1,8 +1,6 @@
 import {
   Flex,
-  TextField,
   Text,
-  Slider,
   Button,
   Heading,
   IconButton,
@@ -11,15 +9,15 @@ import {
 
 import { TrashIcon } from "@radix-ui/react-icons";
 
-import LabeledInput from "./components/LabeledInput";
+import MemberDataForm from "./components/MemberDataForm";
+import SalarySlider from "./components/SalarySlider";
 import PercentageGroup from "./components/PercentageGroup";
 import Discounts from "./components/Discounts/Discounts";
 
-import numberFormatter from "../../utils/numberFormatter";
-
 import MemberContext from "../../store/MemberContext";
-
 import { useContext } from "react";
+
+import numberFormatter from "../../utils/numberFormatter";
 
 const SalaryCalculator = () => {
   const {
@@ -32,34 +30,10 @@ const SalaryCalculator = () => {
 
   const { id, name, salary } = selectedMember;
 
-  function handleNameChange(event) {
-    setName(selectedMember.id, event.target.value);
-  }
-
-  function handleSalaryChange(event) {
-    const value = event.target.value;
-    if (value === "") {
-      setSalary(id, 0);
-    } else if (!isNaN(value) && !value.includes("e")) {
-      setSalary(id, +value);
-    }
-  }
-
-  const percentages = ["-1", "-5", "+1", "+5"];
-
-  function handleSalaryPercentageChange(event) {
-    if (salary === "") return;
-    const percentage = event.target.value / 100;
-    const newSalary = salary + salary * percentage;
-    setSalary(id, newSalary);
-  }
-
-  function handleSalarySliderChange(newValue) {
-    setSalary(id, +newValue);
-  }
+  const memberNetSalary = numberFormatter(calculateNetSalary(selectedMember));
 
   return (
-    <Flex direction="column" gap="2" className="h-full w-full" gapY="3">
+    <Flex direction="column" className="h-full w-full" gapY="3">
       <Flex justify="between" align="center">
         <Heading size="4" className="uppercase">
           {name} bérének kiszámítása
@@ -68,47 +42,27 @@ const SalaryCalculator = () => {
           <TrashIcon width="18" height="18" />
         </IconButton>
       </Flex>
-      <LabeledInput
-        label={"Családtag neve"}
-        size={"2"}
-        value={name}
-        onChange={handleNameChange}
-        warningLabel={"Add meg a családtag nevét!"}
-        isWarningEnabled={name === ""}
+      <MemberDataForm
+        memberId={id}
+        name={name}
+        salary={salary}
+        setName={setName}
+        setSalary={setSalary}
       />
-      <LabeledInput
-        label={"Bruttó bér"}
-        size={"2"}
-        value={salary}
-        onChange={handleSalaryChange}
-        warningLabel={"Add meg a bruttó béredet!"}
-        isWarningEnabled={salary === 0}
-      >
-        <TextField.Slot side="right">Ft</TextField.Slot>
-      </LabeledInput>
-      <Slider
-        value={[salary]}
-        onValueChange={handleSalarySliderChange}
-        min={0}
-        step={100}
-        max={2000000}
-        variant="soft"
-        radius="small"
-      />
+      <SalarySlider memberId={id} salary={salary} setSalary={setSalary} />
       <PercentageGroup
+        memberId={id}
+        salary={salary}
+        setSalary={setSalary}
         size="2"
         variant="soft"
-        values={percentages}
-        onClick={handleSalaryPercentageChange}
       />
       <Discounts />
       <Flex direction="column" gapY="2">
         <Text size="3">
           <Strong>Számított nettó bér</Strong>
         </Text>
-        <Button variant="outline">
-          {numberFormatter(calculateNetSalary(selectedMember))}
-        </Button>
+        <Button variant="outline">{memberNetSalary}</Button>
       </Flex>
     </Flex>
   );

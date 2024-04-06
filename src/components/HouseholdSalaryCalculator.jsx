@@ -11,7 +11,7 @@ const HouseholdSalaryCalculator = () => {
   const { selectedMember } = useContext(MemberContext);
   return (
     <Container className="">
-      <Box p="4" className="space-y-2">
+      <Box p="4" className="space-y-6">
         <FamilyMemberTabs />
         {selectedMember !== undefined && (
           <Flex

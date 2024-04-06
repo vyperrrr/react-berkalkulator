@@ -1,16 +1,20 @@
 import { Box, Heading, Table } from "@radix-ui/themes";
 
 import MemberContext from "../../store/MemberContext";
-import formatCurrency from "../../utils/numberFormatter";
 import { useContext } from "react";
+
+import formatName from "../../utils/nameFormatter";
+import formatCurrency from "../../utils/numberFormatter";
 
 const HouseholdSummary = () => {
   const { members, calculateNetSalary, calculateOverallNetSalary } =
     useContext(MemberContext);
 
+  const overallNetSalary = formatCurrency(calculateOverallNetSalary());
+
   return (
-    <Box className="h-full w-full space-y-2">
-      <Heading size="3" className="text-center uppercase">
+    <Box className="h-full w-full space-y-3">
+      <Heading size="4" className="text-center uppercase">
         Háztartás összesített jövedelme
       </Heading>
       <Table.Root variant="surface">
@@ -23,9 +27,7 @@ const HouseholdSummary = () => {
         <Table.Body>
           {members.map((member) => (
             <Table.Row key={member.id}>
-              <Table.RowHeaderCell>
-                {member.name === "" ? `Placeholder #${member.id}` : member.name}
-              </Table.RowHeaderCell>
+              <Table.RowHeaderCell>{formatName(member)}</Table.RowHeaderCell>
               <Table.Cell>
                 {formatCurrency(calculateNetSalary(member))}
               </Table.Cell>
@@ -35,9 +37,7 @@ const HouseholdSummary = () => {
             <Table.RowHeaderCell className="font-semibold">
               Összesen
             </Table.RowHeaderCell>
-            <Table.Cell>
-              {formatCurrency(calculateOverallNetSalary())}
-            </Table.Cell>
+            <Table.Cell>{overallNetSalary}</Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table.Root>

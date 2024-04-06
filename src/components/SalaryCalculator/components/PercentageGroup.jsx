@@ -1,11 +1,22 @@
 import { Flex, Button } from "@radix-ui/themes";
 
-const PercentageGroup = ({ values, ...props }) => {
+const percentages = ["-1", "-5", "+1", "+5"];
+
+const PercentageGroup = ({ memberId, salary, setSalary }) => {
+  const handleClick = (button) => {
+    const newSalary = salary + salary * (button.value / 100);
+    setSalary(memberId, newSalary);
+  };
+
   return (
     <Flex direction="row" gap="2" className="items-center justify-center">
-      {values.map((value) => {
+      {percentages.map((value) => {
         return (
-          <Button key={value} value={value} {...props}>
+          <Button
+            key={value}
+            value={value}
+            onClick={(event) => handleClick(event.target)}
+          >
             {value}%
           </Button>
         );
