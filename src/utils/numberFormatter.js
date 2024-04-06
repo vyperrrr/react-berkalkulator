@@ -2,7 +2,7 @@ const formatCurrency = (amount) => {
   return new Intl.NumberFormat("hu-HU", {
     style: "currency",
     currency: "HUF",
-    maximumSignificantDigits: 3,
+    maximumFractionDigits: 0,
   }).format(amount);
 };
 

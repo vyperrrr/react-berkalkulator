@@ -1,16 +1,19 @@
 import { Box, Heading, Table } from "@radix-ui/themes";
 
-import MemberContext from "../../store/MemberContext";
+import MemberContext from "@/store/MemberContext";
 import { useContext } from "react";
 
-import formatName from "../../utils/nameFormatter";
-import formatCurrency from "../../utils/numberFormatter";
+import formatName from "@/utils/nameFormatter";
+import formatCurrency from "@/utils/numberFormatter";
+import {
+  calculateNetSalary,
+  calculateOverallNetSalary,
+} from "@/utils/salaryCalculations";
 
 const HouseholdSummary = () => {
-  const { members, calculateNetSalary, calculateOverallNetSalary } =
-    useContext(MemberContext);
+  const { members } = useContext(MemberContext);
 
-  const overallNetSalary = formatCurrency(calculateOverallNetSalary());
+  const overallNetSalary = formatCurrency(calculateOverallNetSalary(members));
 
   return (
     <Box className="h-full w-full space-y-3">

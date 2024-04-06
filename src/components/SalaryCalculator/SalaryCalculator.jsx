@@ -18,15 +18,11 @@ import MemberContext from "../../store/MemberContext";
 import { useContext } from "react";
 
 import numberFormatter from "../../utils/numberFormatter";
+import { calculateNetSalary } from "../../utils/salaryCalculations";
 
 const SalaryCalculator = () => {
-  const {
-    selectedMember,
-    setName,
-    setSalary,
-    removeMember,
-    calculateNetSalary,
-  } = useContext(MemberContext);
+  const { selectedMember, setName, setSalary, removeMember } =
+    useContext(MemberContext);
 
   const { id, name, salary } = selectedMember;
 

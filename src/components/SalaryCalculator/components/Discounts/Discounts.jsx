@@ -24,7 +24,7 @@ const Discounts = () => {
     <Flex direction="column" gapY="2">
       <Heading size="3">Kedvezmények</Heading>
       <LabeledSwitch
-        label="25 év alattiak SZJA mentessége"
+        label="25 év alattiak SZJA mentessége (499 952 Ft-ig)"
         labelSize="2"
         size="1"
         radius="small"
