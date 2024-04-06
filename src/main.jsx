@@ -6,10 +6,10 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Theme
-    accentColor="ruby"
-    grayColor="mauve"
-    radius="none"
-    scaling="100%"
+    accentColor="grass"
+    grayColor="sage"
+    radius="small"
+    scaling="110%"
     panelBackground="translucent"
     appearance="dark"
   >
