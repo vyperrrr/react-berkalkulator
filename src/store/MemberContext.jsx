@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { useState, useId } from "react";
+import { useState, useReducer } from "react";
 
 const MemberContext = createContext({
   members: [],
@@ -16,14 +16,49 @@ const MemberContext = createContext({
 
 export default MemberContext;
 
+function memberReducer(state, action) {
+  switch (action.type) {
+    case "ADD_MEMBER":
+      return [...state, action.payload];
+    case "REMOVE_MEMBER":
+      return state.filter((member) => member.id !== action.payload);
+    case "SET_NAME":
+      return state.map((member) =>
+        member.id === action.payload.id
+          ? { ...member, name: action.payload.name }
+          : member,
+      );
+    case "SET_SALARY":
+      return state.map((member) =>
+        member.id === action.payload.id
+          ? { ...member, salary: action.payload.salary }
+          : member,
+      );
+    case "SET_DISCOUNTS":
+      return state.map((member) =>
+        member.id === action.payload.id
+          ? { ...member, discounts: action.payload.discounts }
+          : member,
+      );
+    case "SET_IS_SELECTED":
+      return state.map((member) =>
+        member.id === action.payload.id
+          ? { ...member, isSelected: action.payload.isSelected }
+          : { ...member, isSelected: false },
+      );
+    default:
+      return state;
+  }
+}
+
 export function MemberContextProvider({ children }) {
-  const [members, setMembers] = useState([]);
+  const [members, dispatch] = useReducer(memberReducer, []);
   const [idCounter, setIdCounter] = useState(0);
 
-  function addMember() {
-    setMembers((prevMembers) => [
-      ...prevMembers,
-      {
+  const addMember = () => {
+    dispatch({
+      type: "ADD_MEMBER",
+      payload: {
         id: idCounter,
         name: "",
         salary: 0,
@@ -35,40 +70,32 @@ export function MemberContextProvider({ children }) {
         },
         isSelected: false,
       },
-    ]);
+    });
     setIdCounter(idCounter + 1);
-  }
+  };
 
-  function removeMember(id) {
-    setMembers((prevMembers) =>
-      prevMembers.filter((member) => member.id !== id),
-    );
-  }
+  const removeMember = (id) => {
+    dispatch({ type: "REMOVE_MEMBER", payload: id });
+  };
+
+  const setName = (id, name) => {
+    dispatch({ type: "SET_NAME", payload: { id, name } });
+  };
+
+  const setSalary = (id, salary) => {
+    dispatch({ type: "SET_SALARY", payload: { id, salary } });
+  };
+
+  const setDiscounts = (id, discounts) => {
+    dispatch({ type: "SET_DISCOUNTS", payload: { id, discounts } });
+  };
+
+  const setIsSelected = (id, isSelected) => {
+    dispatch({ type: "SET_IS_SELECTED", payload: { id, isSelected } });
+  };
 
   function getSelectedMember() {
     return members.find((member) => member.isSelected === true);
-  }
-
-  function setName(id, name) {
-    setMembers((prevMembers) =>
-      prevMembers.map((member) => {
-        if (member.id === id) {
-          return { ...member, name };
-        }
-        return member;
-      }),
-    );
-  }
-
-  function setSalary(id, salary) {
-    setMembers((prevMembers) =>
-      prevMembers.map((member) => {
-        if (member.id === id) {
-          return { ...member, salary };
-        }
-        return member;
-      }),
-    );
   }
 
   function calculateNetSalary(member) {
@@ -129,28 +156,6 @@ export function MemberContextProvider({ children }) {
     let netSalary = 0;
     members.forEach((member) => (netSalary += calculateNetSalary(member)));
     return netSalary;
-  }
-
-  function setIsSelected(id, isSelected) {
-    setMembers((prevMembers) =>
-      prevMembers.map((member) => {
-        if (member.id === id) {
-          return { ...member, isSelected };
-        }
-        return { ...member, isSelected: !isSelected };
-      }),
-    );
-  }
-
-  function setDiscounts(id, discounts) {
-    setMembers((prevMembers) =>
-      prevMembers.map((member) => {
-        if (member.id === id) {
-          return { ...member, discounts };
-        }
-        return member;
-      }),
-    );
   }
 
   const ctx = {
