@@ -1,5 +1,5 @@
 import { Tabs, IconButton } from "@radix-ui/themes";
-import { PlusIcon } from "@radix-ui/react-icons";
+import { PlusIcon, ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 
 import MemberContext from "../../store/MemberContext";
 import { useContext } from "react";
@@ -7,7 +7,30 @@ import { useContext } from "react";
 import formatName from "../../utils/nameFormatter";
 
 const FamilyMemberTabs = () => {
-  const { members, addMember, setIsSelected } = useContext(MemberContext);
+  const { members, selectedMember, addMember, setIsSelected } =
+    useContext(MemberContext);
+
+  const currentIndex = selectedMember
+    ? members.findIndex((member) => member.id === selectedMember?.id)
+    : -1;
+
+  const handleLeftClick = () => {
+    if (members.length === 0) return;
+    const previousIndex =
+      currentIndex > 0 ? currentIndex - 1 : members.length - 1;
+    handleSelectMember(members[previousIndex].id);
+  };
+
+  const handleRightClick = () => {
+    if (members.length === 0) return;
+    const nextIndex = (currentIndex + 1) % members.length;
+    handleSelectMember(members[nextIndex].id);
+  };
+
+  const rotatedMembers =
+    currentIndex >= 0
+      ? [...members.slice(currentIndex), ...members.slice(0, currentIndex)]
+      : members;
 
   const handleSelectMember = (id) => {
     setIsSelected(id, true);
@@ -16,9 +39,18 @@ const FamilyMemberTabs = () => {
   const handleAddMember = () => addMember();
 
   return (
-    <Tabs.Root defaultValue="account" className="relative">
-      <Tabs.List>
-        {members.map((member) => (
+    <Tabs.Root
+      value={selectedMember ? selectedMember.id : null}
+      orientation="horizontal"
+      className="flex items-center"
+    >
+      <span>
+        <IconButton onClick={handleLeftClick}>
+          <ArrowLeftIcon width="18" height="18" />
+        </IconButton>
+      </span>
+      <Tabs.List className="flex-grow">
+        {rotatedMembers.map((member) => (
           <Tabs.Trigger
             key={member.id}
             value={member.id}
@@ -27,10 +59,15 @@ const FamilyMemberTabs = () => {
             {formatName(member)}
           </Tabs.Trigger>
         ))}
-        <IconButton onClick={handleAddMember} className="absolute right-0">
+      </Tabs.List>
+      <span className="flex gap-x-2">
+        <IconButton onClick={handleRightClick}>
+          <ArrowRightIcon width="18" height="18" />
+        </IconButton>
+        <IconButton onClick={handleAddMember}>
           <PlusIcon width="18" height="18" />
         </IconButton>
-      </Tabs.List>
+      </span>
     </Tabs.Root>
   );
 };

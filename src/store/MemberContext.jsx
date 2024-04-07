@@ -55,7 +55,6 @@ function memberReducer(state, action) {
 export function MemberContextProvider({ children }) {
   const [storedMembers, setStoredMembers] = useLocalStorage("members", []);
   const [members, dispatch] = useReducer(memberReducer, storedMembers);
-  const [idCounter, setIdCounter] = useState(0);
 
   useEffect(() => {
     setStoredMembers(members);
@@ -77,7 +76,6 @@ export function MemberContextProvider({ children }) {
         isSelected: false,
       },
     });
-    setIdCounter(idCounter + 1);
   };
 
   const removeMember = (id) => {
