@@ -6,7 +6,7 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Theme
-    accentColor="grass"
+    accentColor="plum"
     grayColor="sage"
     radius="small"
     scaling="110%"

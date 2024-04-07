@@ -20,8 +20,8 @@ const HouseholdSummary = () => {
       <Heading size="4" className="text-center uppercase">
         Háztartás összesített jövedelme
       </Heading>
-      <Table.Root variant="surface">
-        <Table.Header className="[&>*]:font-extrabold">
+      <Table.Root variant="surface" className="border-0">
+        <Table.Header className="[&>*]:font-semibold">
           <Table.Row>
             <Table.Cell>Családtag</Table.Cell>
             <Table.Cell>Nettó bér</Table.Cell>
@@ -33,7 +33,7 @@ const HouseholdSummary = () => {
               key={member.id}
               className={
                 member.id === selectedMember.id &&
-                "[&>*]:bg-[color:var(--accent-track)]"
+                "text-[color:var(--accent-contrast)] [&>*]:bg-[color:var(--accent-9)]"
               }
             >
               <Table.RowHeaderCell>{formatName(member)}</Table.RowHeaderCell>
@@ -43,9 +43,7 @@ const HouseholdSummary = () => {
             </Table.Row>
           ))}
           <Table.Row>
-            <Table.RowHeaderCell className="font-semibold">
-              Összesen
-            </Table.RowHeaderCell>
+            <Table.RowHeaderCell>Összesen</Table.RowHeaderCell>
             <Table.Cell>{overallNetSalary}</Table.Cell>
           </Table.Row>
         </Table.Body>
