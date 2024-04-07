@@ -20,7 +20,7 @@ const HouseholdSummary = () => {
       <Heading size="4" className="text-center uppercase">
         Háztartás összesített jövedelme
       </Heading>
-      <Table.Root variant="surface" className="border-0">
+      <Table.Root variant="surface">
         <Table.Header className="[&>*]:font-semibold">
           <Table.Row>
             <Table.Cell>Családtag</Table.Cell>

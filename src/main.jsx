@@ -7,9 +7,9 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Theme
     accentColor="plum"
-    grayColor="sage"
+    grayColor="auto"
     radius="small"
-    scaling="110%"
+    scaling="100%"
     panelBackground="translucent"
     appearance="dark"
   >
