@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { useState, useReducer, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import useLocalStorage from "@/hooks/useLocalStorage";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const MemberContext = createContext({
   members: [],

@@ -4,7 +4,7 @@ import LabeledSwitch from "../LabeledSwitch";
 import MarriageDiscount from "./components/MarriageDiscount/MarriageDiscount";
 import FamilyDiscount from "./components/FamilyDiscount/FamilyDiscount";
 
-import MemberContext from "@/store/MemberContext";
+import MemberContext from "/src/store/MemberContext";
 import { useContext } from "react";
 
 const Discounts = () => {

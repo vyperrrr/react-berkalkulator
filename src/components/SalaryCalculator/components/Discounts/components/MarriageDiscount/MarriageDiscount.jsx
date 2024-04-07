@@ -4,16 +4,16 @@ import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 import dayjs from "dayjs";
 
-import LabeledInput from "@/components/SalaryCalculator/components/LabeledInput";
-import LabeledSwitch from "@/components/SalaryCalculator/components/LabeledSwitch";
-import Modal from "@/components/Modal/Modal";
+import LabeledSwitch from "/src/components/SalaryCalculator/components/LabeledSwitch";
+import LabeledInput from "/src/components/SalaryCalculator/components/LabeledInput";
+import Modal from "/src/components/Modal/Modal";
 import Eligiblity from "./components/Eligibility";
 
 import {
   validateDate,
   isDateWithinTwoYearsFromNow,
   isDateNextMonthBeforeNow,
-} from "@/utils/dateUtils";
+} from "/src/utils/dateUtils";
 
 let isEligibleForMarriageDiscount = false;
 

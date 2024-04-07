@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from "@radix-ui/themes";
-import LabeledSwitch from "@/components/SalaryCalculator/components/LabeledSwitch";
+import LabeledSwitch from "/src/components/SalaryCalculator/components/LabeledSwitch";
 import Counter from "./components/Counter";
 
 import { useState } from "react";

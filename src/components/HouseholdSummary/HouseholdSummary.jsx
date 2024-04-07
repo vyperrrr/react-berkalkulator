@@ -1,14 +1,14 @@
 import { Box, Heading, Table } from "@radix-ui/themes";
 
-import MemberContext from "@/store/MemberContext";
+import MemberContext from "../../store/MemberContext";
 import { useContext } from "react";
 
-import formatName from "@/utils/nameFormatter";
-import formatCurrency from "@/utils/numberFormatter";
+import formatName from "../../utils/nameFormatter";
+import formatCurrency from "../../utils/numberFormatter";
 import {
   calculateNetSalary,
   calculateOverallNetSalary,
-} from "@/utils/salaryCalculations";
+} from "../../utils/salaryCalculations";
 
 const HouseholdSummary = () => {
   const { members, selectedMember } = useContext(MemberContext);
