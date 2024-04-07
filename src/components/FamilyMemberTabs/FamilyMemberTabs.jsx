@@ -45,7 +45,7 @@ const FamilyMemberTabs = () => {
       className="flex items-center"
     >
       <span>
-        <IconButton onClick={handleLeftClick}>
+        <IconButton onClick={handleLeftClick} className="cursor-pointer">
           <ArrowLeftIcon width="18" height="18" />
         </IconButton>
       </span>
@@ -61,10 +61,10 @@ const FamilyMemberTabs = () => {
         ))}
       </Tabs.List>
       <span className="flex gap-x-2">
-        <IconButton onClick={handleRightClick}>
+        <IconButton onClick={handleRightClick} className="cursor-pointer">
           <ArrowRightIcon width="18" height="18" />
         </IconButton>
-        <IconButton onClick={handleAddMember}>
+        <IconButton onClick={handleAddMember} className="cursor-pointer">
           <PlusIcon width="18" height="18" />
         </IconButton>
       </span>

@@ -10,14 +10,14 @@ function validateDate(dateString) {
 
 function isDateWithinTwoYearsFromNow(date) {
   const now = dayjs();
-  const diffYears = now.diff(date, "year");
-  return diffYears <= 2;
+  const diffMonths = now.diff(date, "month");
+  return diffMonths <= 24;
 }
 
 function isDateNextMonthBeforeNow(date) {
   const now = dayjs();
   const dateNextMonth = date.add(1, "month").startOf("month");
-  return now.isAfter(date);
+  return now.isAfter(dateNextMonth);
 }
 
 export { validateDate, isDateWithinTwoYearsFromNow, isDateNextMonthBeforeNow };

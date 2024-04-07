@@ -34,7 +34,10 @@ const SalaryCalculator = () => {
         <Heading size="4" className="uppercase">
           {name} bérének kiszámítása
         </Heading>
-        <IconButton onClick={() => removeMember(selectedMember.id)}>
+        <IconButton
+          onClick={() => removeMember(selectedMember.id)}
+          className="cursor-pointer"
+        >
           <TrashIcon width="18" height="18" />
         </IconButton>
       </Flex>

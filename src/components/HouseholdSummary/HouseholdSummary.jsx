@@ -36,14 +36,14 @@ const HouseholdSummary = () => {
                 "text-[color:var(--accent-contrast)] [&>*]:bg-[color:var(--accent-9)]"
               }
             >
-              <Table.RowHeaderCell>{formatName(member)}</Table.RowHeaderCell>
+              <Table.Cell>{formatName(member)}</Table.Cell>
               <Table.Cell>
                 {formatCurrency(calculateNetSalary(member))}
               </Table.Cell>
             </Table.Row>
           ))}
           <Table.Row>
-            <Table.RowHeaderCell>Összesen</Table.RowHeaderCell>
+            <Table.Cell>Összesen</Table.Cell>
             <Table.Cell>{overallNetSalary}</Table.Cell>
           </Table.Row>
         </Table.Body>

@@ -13,6 +13,7 @@ const PercentageGroup = ({ memberId, salary, setSalary }) => {
       {percentages.map((value) => {
         return (
           <Button
+            className="cursor-pointer"
             key={value}
             value={value}
             onClick={(event) => handleClick(event.target)}

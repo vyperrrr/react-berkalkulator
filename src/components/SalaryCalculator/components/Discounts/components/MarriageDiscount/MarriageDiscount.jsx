@@ -70,11 +70,7 @@ const MarriageDiscount = ({ discounts, handleDiscountChange }) => {
       />
       {discounts.freshMerried.isActive && (
         <>
-          <Badge
-            color="bronze"
-            className="cursor-pointer"
-            onClick={() => setIsOpen(true)}
-          >
+          <Badge className="cursor-pointer" onClick={() => setIsOpen(true)}>
             Dátum módosítása
           </Badge>
           <Modal

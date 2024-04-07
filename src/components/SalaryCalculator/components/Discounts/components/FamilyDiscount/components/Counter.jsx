@@ -39,11 +39,11 @@ const Counter = ({ count, setCount, onCountChange, min, max }) => {
 
   return (
     <Flex gap="2" direction="row" align="center">
-      <IconButton onClick={decrement}>
+      <IconButton onClick={decrement} className="cursor-pointer">
         <MinusIcon width="18" height="18" />
       </IconButton>
       <Badge radius="small">{count}</Badge>
-      <IconButton onClick={increment}>
+      <IconButton onClick={increment} className="cursor-pointer">
         <PlusIcon width="18" height="18" />
       </IconButton>
     </Flex>
