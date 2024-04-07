@@ -11,7 +11,7 @@ import {
 } from "@/utils/salaryCalculations";
 
 const HouseholdSummary = () => {
-  const { members } = useContext(MemberContext);
+  const { members, selectedMember } = useContext(MemberContext);
 
   const overallNetSalary = formatCurrency(calculateOverallNetSalary(members));
 
@@ -29,7 +29,13 @@ const HouseholdSummary = () => {
         </Table.Header>
         <Table.Body>
           {members.map((member) => (
-            <Table.Row key={member.id}>
+            <Table.Row
+              key={member.id}
+              className={
+                member.id === selectedMember.id &&
+                "[&>*]:bg-[color:var(--accent-track)]"
+              }
+            >
               <Table.RowHeaderCell>{formatName(member)}</Table.RowHeaderCell>
               <Table.Cell>
                 {formatCurrency(calculateNetSalary(member))}
