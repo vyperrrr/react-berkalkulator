@@ -12,10 +12,10 @@ const Discounts = () => {
 
   const { id, discounts } = selectedMember;
 
-  function handleDiscountChange(type, isChecked, properties = {}) {
+  function updateDiscountProperties(discount, updatedProperties) {
     const updatedDiscounts = {
       ...discounts,
-      [type]: { isActive: isChecked, ...properties },
+      [discount]: { ...discounts[discount], ...updatedProperties },
     };
     setDiscounts(id, updatedDiscounts);
   }
@@ -28,9 +28,11 @@ const Discounts = () => {
         labelSize="2"
         size="1"
         radius="small"
-        checked={discounts.under25.isActive}
+        checked={discounts.UNDER_TWENTY_FIVE_DISCOUNT.isActive}
         onCheckedChange={(isChecked) =>
-          handleDiscountChange("under25", isChecked)
+          updateDiscountProperties("UNDER_TWENTY_FIVE_DISCOUNT", {
+            isActive: isChecked,
+          })
         }
       />
       <LabeledSwitch
@@ -38,18 +40,20 @@ const Discounts = () => {
         labelSize="2"
         size="1"
         radius="small"
-        checked={discounts.taxDiscount.isActive}
+        checked={discounts.TAX_DISCOUNT.isActive}
         onCheckedChange={(isChecked) =>
-          handleDiscountChange("taxDiscount", isChecked)
+          updateDiscountProperties("TAX_DISCOUNT", {
+            isActive: isChecked,
+          })
         }
       />
       <MarriageDiscount
         discounts={discounts}
-        handleDiscountChange={handleDiscountChange}
+        updateDiscountProperties={updateDiscountProperties}
       />
       <FamilyDiscount
         discounts={discounts}
-        handleDiscountChange={handleDiscountChange}
+        updateDiscountProperties={updateDiscountProperties}
       />
     </Flex>
   );

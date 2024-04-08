@@ -4,9 +4,11 @@ import Counter from "./components/Counter";
 
 import { useState } from "react";
 
-const FamilyDiscount = ({ discounts, handleDiscountChange }) => {
+const FamilyDiscount = ({ discounts, updateDiscountProperties }) => {
   const [supportedChildren, setSupportedChildren] = useState(0);
   const [beneficiaryChildren, setBeneficiaryChildren] = useState(0);
+
+  console.log(discounts);
 
   return (
     <Box className="space-y-2">
@@ -15,12 +17,14 @@ const FamilyDiscount = ({ discounts, handleDiscountChange }) => {
         labelSize="2"
         size="1"
         radius="small"
-        checked={discounts.familyDiscount.isActive}
+        checked={discounts.FAMILY_DISCOUNT.isActive}
         onCheckedChange={(isChecked) =>
-          handleDiscountChange("familyDiscount", isChecked)
+          updateDiscountProperties("FAMILY_DISCOUNT", {
+            isActive: isChecked,
+          })
         }
       />
-      {discounts.familyDiscount.isActive && (
+      {discounts.FAMILY_DISCOUNT.isActive && (
         <Box>
           <Flex gap="2" direction="column">
             <Text size="2">Eltartottak száma</Text>
@@ -28,7 +32,7 @@ const FamilyDiscount = ({ discounts, handleDiscountChange }) => {
               count={supportedChildren}
               setCount={setSupportedChildren}
               onCountChange={() =>
-                handleDiscountChange("familyDiscount", true, {
+                updateDiscountProperties("FAMILY_DISCOUNT", {
                   supportedChildren,
                   beneficiaryChildren,
                 })
@@ -40,7 +44,7 @@ const FamilyDiscount = ({ discounts, handleDiscountChange }) => {
               count={beneficiaryChildren}
               setCount={setBeneficiaryChildren}
               onCountChange={() =>
-                handleDiscountChange("familyDiscount", true, {
+                updateDiscountProperties("FAMILY_DISCOUNT", {
                   supportedChildren,
                   beneficiaryChildren,
                 })

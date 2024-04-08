@@ -15,44 +15,38 @@ import {
   isDateNextMonthBeforeNow,
 } from "/src/utils/dateUtils";
 
-let isEligibleForMarriageDiscount = false;
-
-const MarriageDiscount = ({ discounts, handleDiscountChange }) => {
+const MarriageDiscount = ({ discounts, updateDiscountProperties }) => {
   const dateRef = useRef(null);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [date, setDate] = useState(null);
   const [isInvalidDate, setIsInvalidDate] = useState(false);
 
-  function handleDateChange() {
-    const date = dateRef.current.value;
-    if (!validateDate(date)) {
-      handleDiscountChange("freshMerried", true, { isEligible: false });
+  const handleSubmit = () => {
+    const providedDate = dayjs(dateRef.current.value);
+    const isValidDate = validateDate(providedDate);
+    if (isValidDate) {
+      setIsInvalidDate(false);
+      updateDiscountProperties("FRESH_MERRIED_DISCOUNT", {
+        isEligible: isEligibleForDiscount(providedDate),
+      });
+      setIsOpen(false);
+    } else {
       setIsInvalidDate(true);
-      return;
+      updateDiscountProperties("FRESH_MERRIED_DISCOUNT", {
+        isEligible: false,
+      });
     }
+  };
 
-    handleDiscountChange("freshMerried", true, { isEligible: true });
-    setIsOpen(false);
-    setIsInvalidDate(false);
-    setDate(date);
-  }
-
-  function isEligibleForDiscount() {
-    const marriageDate = dayjs(date);
-
-    return (
-      isDateWithinTwoYearsFromNow(marriageDate) &&
-      isDateNextMonthBeforeNow(marriageDate)
-    );
-  }
-
-  function handleModalClose() {
-    setIsOpen(false);
-    setIsInvalidDate(false);
-  }
-
-  if (date != null) isEligibleForMarriageDiscount = isEligibleForDiscount();
+  const isEligibleForDiscount = (providedDate) => {
+    if (providedDate) {
+      return (
+        isDateNextMonthBeforeNow(providedDate) &&
+        isDateWithinTwoYearsFromNow(providedDate)
+      );
+    }
+    return false;
+  };
 
   return (
     <Flex gap="2" direction="row" wrap="wrap">
@@ -61,14 +55,14 @@ const MarriageDiscount = ({ discounts, handleDiscountChange }) => {
         labelSize="2"
         size="1"
         radius="small"
-        checked={discounts.freshMerried.isActive}
+        checked={discounts.FRESH_MERRIED_DISCOUNT.isActive}
         onCheckedChange={(isChecked) =>
-          handleDiscountChange("freshMerried", isChecked, {
-            isEligible: isEligibleForMarriageDiscount,
+          updateDiscountProperties("FRESH_MERRIED_DISCOUNT", {
+            isActive: isChecked,
           })
         }
       />
-      {discounts.freshMerried.isActive && (
+      {discounts.FRESH_MERRIED_DISCOUNT.isActive && (
         <>
           <Badge className="cursor-pointer" onClick={() => setIsOpen(true)}>
             Dátum módosítása
@@ -79,7 +73,7 @@ const MarriageDiscount = ({ discounts, handleDiscountChange }) => {
             és a házassági életközösség alatt legfeljebb 24 hónapon keresztül
             jár."
             isOpen={isOpen}
-            setIsOpen={handleModalClose}
+            handleClose={() => setIsOpen(false)}
           >
             <Box className="space-y-2">
               <LabeledInput
@@ -99,16 +93,22 @@ const MarriageDiscount = ({ discounts, handleDiscountChange }) => {
                 <Callout.Text>Például: 2003/09/17</Callout.Text>
               </Callout.Root>
               <Flex mt="2" gap="2" justify="end">
-                <Button variant="soft" color="gray" onClick={handleModalClose}>
+                <Button
+                  variant="soft"
+                  color="gray"
+                  onClick={() => setIsOpen(false)}
+                >
                   Cancel
                 </Button>
-                <Button variant="solid" onClick={handleDateChange}>
+                <Button variant="solid" onClick={handleSubmit}>
                   Mentés
                 </Button>
               </Flex>
             </Box>
           </Modal>
-          <Eligiblity isEligible={isEligibleForMarriageDiscount} />
+          <Eligiblity
+            isEligible={discounts.FRESH_MERRIED_DISCOUNT.isEligible}
+          />
         </>
       )}
     </Flex>

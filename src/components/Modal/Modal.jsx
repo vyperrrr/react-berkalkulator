@@ -1,11 +1,11 @@
 import { Dialog } from "@radix-ui/themes";
 
-const Modal = ({ title, description, isOpen, setIsOpen, children }) => {
+const Modal = ({ title, description, isOpen, handleClose, children }) => {
   return (
     <Dialog.Root open={isOpen}>
       <Dialog.Content
-        onEscapeKeyDown={setIsOpen}
-        onPointerDownOutside={setIsOpen}
+        onEscapeKeyDown={handleClose}
+        onPointerDownOutside={handleClose}
         className="space-y-2"
       >
         <Dialog.Title>{title}</Dialog.Title>

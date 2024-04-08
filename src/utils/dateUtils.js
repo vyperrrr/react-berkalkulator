@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 
-function validateDate(dateString) {
-  const date = dayjs(dateString);
+function validateDate(date) {
   if (!date.isValid()) return false;
   if (date.isAfter(dayjs())) return false;
 

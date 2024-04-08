@@ -18,15 +18,15 @@ function calculateNetSalary(member) {
   Object.entries(discounts).forEach(([key, value]) => {
     if (value.isActive) {
       switch (key) {
-        case "under25":
+        case "UNDER_TWENTY_FIVE_DISCOUNT":
           totalTax -= salary * (RATE_SZJA / 100);
           if (salary - SZJA_LIMIT > 0)
             totalTax += (salary - SZJA_LIMIT) * (RATE_SZJA / 100);
           break;
-        case "taxDiscount":
+        case "TAX_DISCOUNT":
           totalTax -= PERSONAL_TAX_ALLOWANCE;
           break;
-        case "familyDiscount":
+        case "FAMILY_DISCOUNT":
           if (value.beneficiaryChildren === 0) break;
           if (value.beneficiaryChildren < 3)
             switch (value.beneficiaryChildren) {
@@ -43,7 +43,7 @@ function calculateNetSalary(member) {
             netSalary += THREE_CHILD_SUPPORT * value.supportedChildren;
           }
           break;
-        case "freshMerried":
+        case "FRESH_MERRIED_DISCOUNT":
           if (value.isEligible) netSalary += MARRIAGE_SUPPORT;
           break;
         default:

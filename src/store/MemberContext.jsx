@@ -68,10 +68,14 @@ export function MemberContextProvider({ children }) {
         name: "",
         salary: 0,
         discounts: {
-          under25: { isActive: false },
-          taxDiscount: { isActive: false },
-          familyDiscount: { isActive: false },
-          freshMerried: { isActive: false },
+          UNDER_TWENTY_FIVE_DISCOUNT: { isActive: false },
+          TAX_DISCOUNT: { isActive: false },
+          FAMILY_DISCOUNT: {
+            isActive: false,
+            supportedChildren: 0,
+            beneficiaryChildren: 0,
+          },
+          FRESH_MERRIED_DISCOUNT: { isActive: false, isEligible: false },
         },
         isSelected: false,
       },
