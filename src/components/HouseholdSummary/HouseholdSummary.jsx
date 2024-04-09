@@ -32,7 +32,7 @@ const HouseholdSummary = () => {
             <Table.Row
               key={member.id}
               className={
-                member.id === selectedMember.id &&
+                member.id === selectedMember?.id &&
                 "text-[color:var(--accent-contrast)] [&>*]:bg-[color:var(--accent-9)]"
               }
             >

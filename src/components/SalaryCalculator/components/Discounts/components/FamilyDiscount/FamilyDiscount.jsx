@@ -8,8 +8,6 @@ const FamilyDiscount = ({ discounts, updateDiscountProperties }) => {
   const [supportedChildren, setSupportedChildren] = useState(0);
   const [beneficiaryChildren, setBeneficiaryChildren] = useState(0);
 
-  console.log(discounts);
-
   return (
     <Box className="space-y-2">
       <LabeledSwitch
