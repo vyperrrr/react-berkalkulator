@@ -3,7 +3,7 @@
 <h2>Használat</h2>
 <h3>Családtag hozzáadása</h3>
 <p>
-  A fenti plusz gomb megnyomásával adj hozzá egy új családtagot majd, add meg a családtag nevét és bruttó bérét, ebből automatikusan kiszámításra kerül a nettó bér. 
+  A fenti plusz gomb megnyomásával hozzáadhatsz egy új családtagot. 
 </p>
 <h3>Navigáció</h3>
 <p>A hozzáadott családtagok között kattintással, vagy a nyilak használatával tudsz navigálni.</p>
