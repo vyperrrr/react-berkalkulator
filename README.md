@@ -1,6 +1,7 @@
 <h1>React bérkalkulátor</h1>
 <p>Reaktív bérkalkulátor alkalmazás egy vagy több ember, egy háztartás nettó, kedvezményezett bérének kiszámítására.</p>
 <h2>Használat</h2>
+<h3>Családtag hozzáadása</h3>
 <p>
   A fenti plusz gomb megnyomásával adj hozzá egy új családtagot majd, add meg a családtag nevét és bruttó bérét, ebből automatikusan kiszámításra kerül a nettó bér. 
 </p>
