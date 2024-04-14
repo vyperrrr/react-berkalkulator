@@ -25,7 +25,7 @@
   </li>
   <li>
     <h3>Családi kedvezmény</h3>
-    <p>A kedvezmény aktiválása után meg kell adnod az eltartott gyermekek számát és a kedvezményezettek számát.</p>
+    <p>A kedvezmény aktiválása után meg kell adnod az eltartott gyermekek számát és a kedvezményezettek számát. Egy kedvezményezett gyermek esetén <strong>10.000 Ft</strong>, két kedvezményezett gyermek esetén <strong>20.000 Ft</strong>, 3 vagy több kedvezményezett esetén pedig <strong>33.000 Ft</strong> jár minden eltartott gyermek után.</p>
   </li>
 </ul>
 
