@@ -25,5 +25,7 @@
     <p>A kedvezmény aktiválása után meg kell adnod az eltartott gyermekek számát és a kedvezményezettek számát. Egy kedvezményezett gyermek esetén <strong>10.000 Ft</strong>, két kedvezményezett gyermek esetén <strong>20.000 Ft</strong>, 3 vagy több kedvezményezett esetén pedig <strong>33.000 Ft</strong> jár minden eltartott gyermek után.</p>
   </li>
 </ul>
+<p>A háztartás összesített jövedelmét megjelenítő táblázatban láthatod a személyenkénti és az összesített jövedelmet.</p>
+<p>A végrehajtott változtatások azzonal megjelennek.</p>
 
 
