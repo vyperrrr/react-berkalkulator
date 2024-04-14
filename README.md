@@ -26,6 +26,7 @@
   </li>
 </ul>
 <p>A háztartás összesített jövedelmét megjelenítő táblázatban láthatod a személyekre lebontott és az összesített nettó jövedelmet.</p>
-
+<h3>Családtag törlése</h3>
+<p>A törölni kivánt családtag kiválasztását követően kattints a szemetes ikonra.</p>
 
 
