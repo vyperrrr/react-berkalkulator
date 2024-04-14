@@ -6,9 +6,10 @@
   A bért megadhatod
 </p>
 <ul>
-  <li>beviteli mezővel</li>
-  <li>csúszkával</li>
+  <li>Beviteli mezővel.</li>
+  <li>Csúszkával</li>
 </ul>
+  <p>A megadott összeget százalékosan is módosíthatod.</p>
   <p>A kedvezmények menüpont alatt aktiválhatod az alábbi kedvezményeket</p>
 <ul>
   <li>
