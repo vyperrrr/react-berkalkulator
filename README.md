@@ -14,7 +14,7 @@
 <ul>
   <li>
     <h3>25 év alattiak SZJA mentessége</h3>
-    <p><strong>499 952 Ft</strong>-ig a megadott összeg SZJA mentes.</p>
+    <p>A megadott összeg <strong>499 952 Ft</strong>-ig SZJA mentes.</p>
   </li>
   <li>
     <h3>Személyi adókedvezmény</h3>
