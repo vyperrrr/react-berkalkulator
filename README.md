@@ -11,7 +11,10 @@
 </ul>
   <p>A kedvezmények menüpont alatt aktiválhatod az alábbi kedvezményeket</p>
 <ul>
-  <li><h3>25 év alattiak szja mentessége</h3></li>
+  <li>
+    <h3>25 év alattiak SZJA mentessége</h3>
+    <p>499 952 Ft-ig a bruttó bér után nem kell SZJA-t fizetni.</p>
+  </li>
   <li><h3>személyi adókedvezmény</h3></li>
   <li><h3>friss házasok kedvezménye</h3></li>
   <li><h3>családi kedvezmény</h3></li>
