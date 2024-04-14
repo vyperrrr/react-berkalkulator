@@ -11,7 +11,7 @@
 </ul>
   <p>A kedvezmények menüpont alatt aktiválhatod az alábbi kedvezményeket</p>
 <ul>
-  <li>25 év alattiak SZJA mentessége</li>
+  <li><h3>25 év alattiak szja mentessége</h3></li>
   <li>személyi adókedvezmény</li>
   <li>friss házasok kedvezménye</li>
   <li>családi kedvezmény</li>
