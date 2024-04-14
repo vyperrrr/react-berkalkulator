@@ -4,16 +4,17 @@
 <p>
   A fenti plusz gomb megnyomásával adj hozzá egy új családtagot majd, add meg a családtag nevét és bruttó bérét, ebből automatikusan kiszámításra kerül a nettó bér. 
   A bért megadhatod
+</p>
 <ul>
   <li>beviteli mezővel</li>
   <li>csúszkával</li>
 </ul>
-  A kedvezmények menüpont alatt aktiválhatod az alábbi kedvezményeket
+  <p>A kedvezmények menüpont alatt aktiválhatod az alábbi kedvezményeket</p>
 <ul>
   <li>25 év alattiak SZJA mentessége</li>
   <li>személyi adókedvezmény</li>
   <li>friss házasok kedvezménye</li>
   <li>családi kedvezmény</li>
 </ul>
-</p>
+
 
