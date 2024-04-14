@@ -6,8 +6,8 @@
   A fenti plusz gomb megnyomásával adj hozzá egy új családtagot majd, add meg a családtag nevét és bruttó bérét, ebből automatikusan kiszámításra kerül a nettó bér. 
 </p>
 <h3>Bér megadása</h3>
-  <p>A bért megadhatod beviteli mezővel vagy csúszkával.</p>
-  <p>A megadott összeget százalékosan is módosíthatod.</p>
+  <p>A bért megadhatod beviteli mezővel vagy csúszkával. A megadott összeget százalékosan is módosíthatod.</p>
+<h3>Kedvezmények</h3>
   <p>A kedvezmények menüpont alatt aktiválhatod az alábbi kedvezményeket</p>
 <ul>
   <li>
