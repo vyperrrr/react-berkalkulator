@@ -29,6 +29,7 @@
     <p>A kedvezmény aktiválása után meg kell adnod az eltartott gyermekek számát és a kedvezményezettek számát. Egy kedvezményezett gyermek esetén <strong>10.000 Ft</strong>, két kedvezményezett gyermek esetén <strong>20.000 Ft</strong>, 3 vagy több kedvezményezett esetén pedig <strong>33.000 Ft</strong> jár minden eltartott gyermek után.</p>
   </li>
 </ul>
+<h3>Összeg táblázat</h3>
 <p>A háztartás összesített jövedelmét megjelenítő táblázatban láthatod a személyekre lebontott és az összesített nettó jövedelmet.</p>
 <h3>Családtag törlése</h3>
 <p>A törölni kivánt családtag kiválasztását követően kattints a szemetes ikonra.</p>
