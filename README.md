@@ -1,5 +1,5 @@
 <h1>React bérkalkulátor</h1>
-<p>Reaktív, állapottartó bérkalkulátor alkalmazás egy vagy több ember, egy háztartás nettó, kedvezményezett bérének kiszámítására. A bruttó összegből automatikusan kiszámításra kerül a nettó bér. A megadott adatok automatikusan mentésre kerülnek a böngésző lokális tárhelyében.</p>
+<p>Reaktív, állapottartó és reszponzív bérkalkulátor alkalmazás egy vagy több ember, egy háztartás kedvezményezett nettó bérének kiszámítására. A bruttó összegből automatikusan kiszámításra kerül a nettó bér. A megadott adatok automatikusan mentésre kerülnek a böngésző lokális tárhelyében.</p>
 <h2>Használat</h2>
 <h3>Családtag hozzáadása</h3>
 <p>
