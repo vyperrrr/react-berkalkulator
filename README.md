@@ -13,14 +13,20 @@
 <ul>
   <li>
     <h3>25 év alattiak SZJA mentessége</h3>
-    <p><strong>499 952 Ft</strong>-ig a megadott összeg SZJA mentes</p>
+    <p><strong>499 952 Ft</strong>-ig a megadott összeg SZJA mentes.</p>
   </li>
   <li>
     <h3>Személyi adókedvezmény</h3>
-    <p>Ez <strong>77.300 Ft</strong> adókedvezményt jelent, ami a bruttó összeg után fizetendő adóból kerül levonásra</p>
+    <p>Ez <strong>77.300 Ft</strong> adókedvezményt jelent, ami a bruttó összeg után fizetendő adóból kerül levonásra.</p>
   </li>
-  <li><h3>Friss házasok kedvezménye</h3></li>
-  <li><h3>Családi kedvezmény</h3></li>
+  <li>
+    <h3>Friss házasok kedvezménye</h3>
+    <p>A kedvezmény aktiválása után meg kell adnod a házasságkötés dátumát egy felugró ablakban, ez a kedvezmény a házasságkötést követő hónapban aktiválható először és két évig érvényesíthető.</p>
+  </li>
+  <li>
+    <h3>Családi kedvezmény</h3>
+    <p>A kedvezmény aktiválása után meg kell adnod az eltartott gyermekek számát és a kedvezményezettek számát.</p>
+  </li>
 </ul>
 
 
