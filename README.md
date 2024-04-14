@@ -1,6 +1,5 @@
 <h1>React bérkalkulátor</h1>
 <p>Reaktív, állapottartó és reszponzív bérkalkulátor alkalmazás egy vagy több ember, egy háztartás kedvezményezett nettó bérének kiszámítására. A bruttó összegből automatikusan kiszámításra kerül a nettó bér. A megadott adatok automatikusan mentésre kerülnek a böngésző lokális tárhelyében.</p>
-<p>Stackblitz: <a href="https://stackblitz.com/~/github.com/vyperrrr/react-berkalkulator">https://stackblitz.com/~/github.com/vyperrrr/react-berkalkulator</a></p>
 <h2>Használat</h2>
 <h3>Családtag hozzáadása</h3>
 <p>
@@ -36,4 +35,5 @@
 <p>A törölni kivánt családtag kiválasztását követően kattints a szemetes ikonra.</p>
 <h3>Technológia</h3>
 <p>Az alkalmazás <strong>React.js</strong>, <strong>Radix UI</strong>, és <strong>Tailwindcss</strong> használatával készült.</p>
+<p>Stackblitz: <a href="https://stackblitz.com/~/github.com/vyperrrr/react-berkalkulator">https://stackblitz.com/~/github.com/vyperrrr/react-berkalkulator</a></p>
 
