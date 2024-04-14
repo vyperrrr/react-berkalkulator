@@ -1,4 +1,5 @@
-import { Flex, Container, Box, Heading } from "@radix-ui/themes";
+import { Flex, Container, Box, Heading, Callout } from "@radix-ui/themes";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 import SalaryCalculator from "./SalaryCalculator/SalaryCalculator";
 import HouseholdSummary from "./HouseholdSummary/HouseholdSummary";
@@ -14,14 +15,22 @@ const HouseholdSalaryCalculator = () => {
       <Box p="4" className="space-y-6">
         <FamilyMemberTabs />
         {members.length === 0 ? (
-          <Heading className="text-center uppercase">
-            Adj hozzá egy családtagot!
-          </Heading>
+          <Callout.Root>
+            <Callout.Icon>
+              <InfoCircledIcon />
+            </Callout.Icon>
+            <Callout.Text>Adj hozzá egy családtagot!</Callout.Text>
+          </Callout.Root>
         ) : (
           selectedMember === undefined && (
-            <Heading className="text-center uppercase">
-              Válassz ki egy családtagot az adatai megadásához!
-            </Heading>
+            <Callout.Root>
+              <Callout.Icon>
+                <InfoCircledIcon />
+              </Callout.Icon>
+              <Callout.Text>
+                Válassz ki egy családtagot az adatai megadásához!
+              </Callout.Text>
+            </Callout.Root>
           )
         )}
         <Flex

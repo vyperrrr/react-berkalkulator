@@ -3,7 +3,6 @@ import { Box, Heading, Table } from "@radix-ui/themes";
 import MemberContext from "../../store/MemberContext";
 import { useContext } from "react";
 
-import formatName from "../../utils/nameFormatter";
 import formatCurrency from "../../utils/numberFormatter";
 import {
   calculateNetSalary,
@@ -17,7 +16,7 @@ const HouseholdSummary = () => {
 
   return (
     <Box className="h-full w-full space-y-3">
-      <Heading size="4" className="text-center uppercase">
+      <Heading size="4" className="">
         Háztartás összesített jövedelme
       </Heading>
       <Table.Root variant="surface">
@@ -36,7 +35,7 @@ const HouseholdSummary = () => {
                 "text-[color:var(--accent-contrast)] [&>*]:bg-[color:var(--accent-9)]"
               }
             >
-              <Table.Cell>{formatName(member)}</Table.Cell>
+              <Table.Cell>{member.name}</Table.Cell>
               <Table.Cell>
                 {formatCurrency(calculateNetSalary(member))}
               </Table.Cell>

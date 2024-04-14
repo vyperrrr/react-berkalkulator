@@ -4,10 +4,8 @@ import { PlusIcon, ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import MemberContext from "../../store/MemberContext";
 import { useContext } from "react";
 
-import formatName from "../../utils/nameFormatter";
-
 const FamilyMemberTabs = () => {
-  const { members, selectedMember, addMember, setIsSelected } =
+  const { members, selectedMember, addMember, setIsSelected, setName } =
     useContext(MemberContext);
 
   const currentIndex = selectedMember
@@ -50,15 +48,17 @@ const FamilyMemberTabs = () => {
         </IconButton>
       </span>
       <Tabs.List className="flex-grow">
-        {rotatedMembers.map((member) => (
-          <Tabs.Trigger
-            key={member.id}
-            value={member.id}
-            onClick={() => handleSelectMember(member.id)}
-          >
-            {formatName(member)}
-          </Tabs.Trigger>
-        ))}
+        {rotatedMembers.map((member) => {
+          return (
+            <Tabs.Trigger
+              key={member.id}
+              value={member.id}
+              onClick={() => handleSelectMember(member.id)}
+            >
+              {member.name}
+            </Tabs.Trigger>
+          );
+        })}
       </Tabs.List>
       <span className="flex gap-x-2">
         <IconButton onClick={handleRightClick} className="cursor-pointer">

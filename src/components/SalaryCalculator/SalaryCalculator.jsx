@@ -31,9 +31,7 @@ const SalaryCalculator = () => {
   return (
     <Flex direction="column" className="h-full w-full" gapY="3">
       <Flex justify="between" align="center">
-        <Heading size="4" className="uppercase">
-          {name} bérének kiszámítása
-        </Heading>
+        <Heading size="4">{name} bérének kiszámítása</Heading>
         <IconButton
           onClick={() => removeMember(selectedMember.id)}
           className="cursor-pointer"

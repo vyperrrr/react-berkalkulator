@@ -65,7 +65,7 @@ export function MemberContextProvider({ children }) {
       type: "ADD_MEMBER",
       payload: {
         id: uuidv4(),
-        name: "",
+        name: "Új családtag",
         salary: 0,
         discounts: {
           UNDER_TWENTY_FIVE_DISCOUNT: { isActive: false },
