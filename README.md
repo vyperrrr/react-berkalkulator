@@ -22,7 +22,7 @@
   </li>
   <li>
     <h3>Friss házasok kedvezménye</h3>
-    <p>A kedvezmény aktiválása után meg kell adnod a házasságkötés dátumát egy felugró ablakban, ez a kedvezmény a házasságkötést követő hónapban aktiválható először és két évig érvényesíthető.</p>
+    <p>A kedvezmény aktiválása után meg kell adnod a házasságkötés dátumát egy felugró ablakban, ez a kedvezmény a házasságkötést követő hónapban aktiválható először és két évig érvényesíthető. A dátum megadását követően jogosult vagy nem jogosult státusz kerül megjelenítésre.</p>
   </li>
   <li>
     <h3>Családi kedvezmény</h3>
