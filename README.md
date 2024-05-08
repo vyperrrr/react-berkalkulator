@@ -1,85 +1,39 @@
-# 1. beadandó: Bérkalkulátor
+<h1>React bérkalkulátor</h1>
+<p>Reaktív, állapottartó és reszponzív bérkalkulátor alkalmazás egy vagy több ember, egy háztartás kedvezményezett nettó bérének kiszámítására. A bruttó összegből automatikusan kiszámításra kerül a nettó bér. A megadott adatok automatikusan mentésre kerülnek a böngésző lokális tárhelyében.</p>
+<p>Stackblitz előnézet: <a href="https://stackblitz.com/~/github.com/vyperrrr/react-berkalkulator">https://stackblitz.com/~/github.com/vyperrrr/react-berkalkulator</a></p>
+<h2>Használat</h2>
+<h3>Családtag hozzáadása</h3>
+<p>
+  A fenti plusz gomb megnyomásával hozzáadhatsz egy új családtagot. 
+</p>
+<h3>Navigáció</h3>
+<p>A hozzáadott családtagok között kattintással, vagy a nyilak használatával tudsz navigálni.</p>
+<h3>Bér megadása</h3>
+  <p>A bért megadhatod beviteli mezővel vagy csúszkával. A megadott összeget százalékosan is módosíthatod.</p>
+<h3>Kedvezmények</h3>
+  <p>A kedvezmények menüpont alatt aktiválhatod az alábbi kedvezményeket</p>
+<ul>
+  <li>
+    <h3>25 év alattiak SZJA mentessége</h3>
+    <p>A megadott összeg <strong>499 952 Ft</strong>-ig SZJA mentes.</p>
+  </li>
+  <li>
+    <h3>Személyi adókedvezmény</h3>
+    <p>Ez <strong>77.300 Ft</strong> adókedvezményt jelent, ami a bruttó összeg után fizetendő adóból kerül levonásra.</p>
+  </li>
+  <li>
+    <h3>Friss házasok kedvezménye</h3>
+    <p>A kedvezmény aktiválása után meg kell adnod a házasságkötés dátumát egy felugró ablakban, ez a kedvezmény a házasságkötést követő hónapban aktiválható először és két évig érvényesíthető. A dátum megadását követően jogosult vagy nem jogosult státusz kerül megjelenítésre.</p>
+  </li>
+  <li>
+    <h3>Családi kedvezmény</h3>
+    <p>A kedvezmény aktiválása után meg kell adnod az eltartott gyermekek számát és a kedvezményezettek számát. Egy kedvezményezett gyermek esetén <strong>10.000 Ft</strong>, két kedvezményezett gyermek esetén <strong>20.000 Ft</strong>, 3 vagy több kedvezményezett esetén pedig <strong>33.000 Ft</strong> jár minden eltartott gyermek után.</p>
+  </li>
+</ul>
+<h3>Összeg táblázat</h3>
+<p>A háztartás összesített jövedelmét megjelenítő táblázatban láthatod a személyekre lebontott és az összesített nettó jövedelmet.</p>
+<h3>Családtag törlése</h3>
+<p>A törölni kivánt családtag kiválasztását követően kattints a szemetes ikonra.</p>
+<h3>Technológia</h3>
+<p>Az alkalmazás <strong>React.js</strong>, <strong>Radix UI</strong>, és <strong>Tailwindcss</strong> használatával készült.</p>
 
-_Kliensoldali webprogramozás 1. beadandó 2023-24-2_
-
-## Nyilatkozat
-
-Kérlek, töltsétek ki az adataitokkal beadás előtt!
-
-```txt
-<Gerzsenyi Patrik Alexander>
-<Q71LUX>
-Kliensoldali webprogramozás - beadandó
-Ezt a megoldást a fent írt hallgató küldte be és készítette a Kliensoldali webprogramozás kurzus számonkéréséhez.
-Kijelentem, hogy ez a megoldás a saját munkám. Nem másoltam vagy használtam harmadik féltől
-származó megoldásokat. Nem továbbítottam megoldást hallgatótársaimnak, és nem is tettem közzé.
-Az Eötvös Loránd Tudományegyetem Hallgatói Követelményrendszere
-(ELTE szervezeti és működési szabályzata, II. Kötet, 74/C. §) kimondja, hogy mindaddig,
-amíg egy hallgató egy másik hallgató munkáját - vagy legalábbis annak jelentős részét -
-saját munkájaként mutatja be, az fegyelmi vétségnek számít.
-A fegyelmi vétség legsúlyosabb következménye a hallgató elbocsátása az egyetemről.
-```
-
-## Pontozás
-
-Kérlek, beadás előtt töltsétek ki, hogy mely részfeladatokat oldottátok meg!
-
-```txt
--[X] Az alkalmazás legalább 4 komponensből áll. (Enélkül a beadandót nem fogadjuk el.) (1pt)
-Tehát léteznek a következő komponensek:
-  - Szöveges beviteli mező címkével
-  - Egyedi beviteli komponens, mellyel az kedvezményezett eltartottak és a nem kedvezményezett eltartottak számát tudjuk megadni
-  - Friss házasokra megadására vonatkozó komponens.
-  - Jogosultság/Nem jogosultság megjelenítésére vonatkozó komponens
--[X] Az alkalmazásban a komponenseket logikusan, funkciók szerint szétbontva hozta létre, ügyelve a tárgyon elsajátított alapelvekre. (2pt)
-- Bérkalkulátor
-  -[X] Az alkalmazás a bruttó jövedelem megadásakor automatikusan kiszámítja a nettó fizetést, mely az alkalmazás állapotterében tárolódik. Amennyiben megváltozik a bruttó jövedelem, vagy bármilyen azt befolyásoló érték, a nettó jövedelem mindig automatikusan frissüljön.  (2pt)
-  -[X] A havi bruttó bért egy csúszka segítségével is lehet változtatni, és ilyenkor a nettó bér automatikusan frissül (1pt)
-  -[X] A bruttó bért a megadott gombok segítségével (-5%, -1%, +1%, +5%) is tudjuk módosítani, ilyenkor a nettó bér frissül (2pt)
-  -[X] A 25 év alattiak SZJA-mentessége esetén a nettó bér jól változik (1pt)
-  -[X] A friss házasok kedvezményének bejelölése lehetséges, bejelölése esetén a nettó bér jól változik (1pt)
-  -[X] A friss házasok kedvezményének bejelölésekor egy új komponens jelenik meg, melynek a lényege, hogy a felhasználó meg tudja adni, hogy melyik napon házasodott össze. Ha ez régebben volt, mint 24 hónap, a "Nem jogosult" szöveg jelenik meg, két éven belül pedig a "Jogosult" szöveg jelenik meg a jelölőnégyzet mellett, és csak ilyenkor számolódik hozzá a nettóhoz. (3pt)
-  -[X] Egyedi beviteli komponens: A kedvezményezett és nem kedvezményezett eltartottak számát meg tudjuk adni, és ezek alapján a nettó bér jól változik. Ez a pont akkor is jár, ha ez a mező csak egy sima szöveges beviteli mező. A kedvezményezett eltartottak száma nem lehet több az eltartottak számánál, és nem lehet nagyobb, mint 3. (2pt)
-  -[X] Egyedi beviteli komponens: Az egyedi beviteli komponenssel - és + gombok segítségével tudjuk változtatni a hozzá tartozó szám értékét. (2pt)
-- Háztartás jövedelme
-  -[X] Személyek mentése: Az elkészített bérkalkulációt automatikusan elmentődik az alkalmazás állapotterében a megfelelő névvel, és a hozzá tartozó értékekkel. (2 pont)
-  -[X] Személyek mentése: Az elmentett személyek táblázatban megjelennek a nettó jövedelmükkel.  (2pt)
-  -[X] Személyek mentése: Az elmentett személyek alapján az alkalmazás kiszámolja a háztartás nettó jövedelmét, és ezt is megjeleníti (1pt)
-  -[X] Személyek módosítása: A személyek listájában egy személyre kattintva megjelenik a nettó és bruttó bére a Bérkalkulátorban, és a nevét tudjuk módosítani.  (4pt)
-  -[X] Személyek módosítása: A személyhez tartozó minden adat megjelenik a Bérkalkulátorban, és ezeket módosítva felül tudjuk írni az eredeti személy adatait. (2pt)
-  -[X] Személyek törlése:A személyeket a listából lehet törölni (1pt)
--[X] Igényes megjelenés (2pt)
-
-- Plusz pontok:
-  -[X] LocalStorage: A háztartásban élő személyeket, és a hozzájuk tartozó adatokat LocalStorage-ba mentjük. Ha ide el van mentve már egy háztartáshoz tartozó adatcsomag, az ő adataikkal fog az alkalmazásunk megjelenni. Ehhez készíts egy saját Hook-ot, amivel a LocalStorage-ba el tudod menteni az értékeket. (3 pont)
-  -[X] Felugró ablak: Készíts egy felugró ablakot (Modal), amivel a friss házasokra vonatkozó házasságkötés dátumát meg tudjuk adni! (2 pont)
-
-
-```
-
-## Telepítés
-
-```bash
-npm install
-```
-
-## Futtatás
-
-```bash
-npm run dev
-```
-
-## Leírás
-
-A keretprogram egy egyszerű és lecsupaszított alkalmazás Vite-tel létrehozva. A fő `App` komponens egyszerűen csak megjeleníti a `HouseholdSalaryCalculator` komponenst. A `components` mappában található mappaszerkezet az ajánlott eljárás a kód strukturálás szempontjából. Minden mappában található egy `jsx` kiterjesztésű fájl, illetve egy `components` mappa, ahova a logikailag alá tartozó komponensek kerülhetnek.
-(Például amennyiben van egy lista komponensünk, a listaelem komponensek kerülhetnének a `components` mappába.)
-
-Az alkalmazás három fő részből áll:
-
-- Családtag kiválasztó fülek
-- Bérkalkulátor
-- Háztartás összesítő bértáblázat
-
-A fenti három komponens megjelenítéséért felel a `HouseholdSalaryCalculator` komponens.
-
-A létrehozott fájlokat és mappaszerkezetet kedved szerint módosíthatod.
